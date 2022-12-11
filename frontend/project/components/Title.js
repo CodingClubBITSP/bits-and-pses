@@ -1,6 +1,6 @@
 export default function Title() {
   return (
-    <div className="m-4 flex flex-col justify-center mt-8">
+    <div className="p-4 flex flex-col justify-center pt-8">
       <div className=" text-3xl font-semibold content-center text-[#606060]">
         Applied Philosopy
       </div>

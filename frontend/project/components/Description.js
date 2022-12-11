@@ -2,7 +2,7 @@ export default function Description() {
   return (
     <div className="bg-[#F9F9F9] w-[100%] ">
       <div className="flex justify-end">
-        <button className=" text-[#0353A4] w-auto p-1 m-2 mb-0 mr-4  hover:text-teal-500">
+        <button className=" text-[#0353A4] w-auto p-1 m-2 mb-0 mr-4 font-bold  hover:text-teal-500">
           GIVE FEEDBACK
         </button>
       </div>
@@ -11,7 +11,7 @@ export default function Description() {
           4 <span className="text-base pl-0 m-0">th</span>
         </span>
         <span className="flex items-center justify-center text-[#8A8A8A] p-4 text-[14px]">
-          most ppopular HuEl by PR number median
+          most popular HuEl by PR number median
         </span>
       </div>
       <div className="shadow-sm m-4 rounded-xl bg-[#E0E0E0] p-4 ">
