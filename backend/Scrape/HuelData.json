@@ -1,1 +1,236 @@
-{"GS F211":{"0":{"CourseName: ":"MOD POLITICAL CONCEPTS"},"1":{"Units: ":3},"2":{"ICName: ":"VEENA R"}},"GS F212":{"0":{"CourseName: ":"ENVIRON DEV & CLIMATE CH"},"1":{"Units: ":3},"2":{"ICName: ":"SAILAJA NANDIGAMA"}}}
+{
+    "3": {
+        "Title": "MOD POLITICAL CONCEPTS",
+        "Units": 3,
+        "IC": "VEENA R",
+        "CourseID": "GS F211"
+    },
+    "5": {
+        "Title": "ENVIRON DEV & CLIMATE CH",
+        "Units": 3,
+        "IC": "SAILAJA NANDIGAMA",
+        "CourseID": "GS F212"
+    },
+    "7": {
+        "Title": "DEVELOPMENT THEORIES",
+        "Units": 3,
+        "IC": "SAILAJA NANDIGAMA",
+        "CourseID": "GS F213"
+    },
+    "9": {
+        "Title": "BUSINESS COMMUNICATION",
+        "Units": 3,
+        "IC": "SUSHILA SHEKHAWAT",
+        "CourseID": "GS F221"
+    },
+    "11": {
+        "Title": "LANGUAGE LAB PRACTICE",
+        "Units": 3,
+        "IC": "CHINTALAPALLI VIJAYAKUMAR",
+        "CourseID": "GS F222"
+    },
+    "13": {
+        "Title": "INTRO TO MASS COMM",
+        "Units": 3,
+        "IC": "SUSHILA SHEKHAWAT",
+        "CourseID": "GS F223"
+    },
+    "15": {
+        "Title": "PRINT & AUDIO VISU ADVER",
+        "Units": 3,
+        "IC": "SANGEETA SHARMA",
+        "CourseID": "GS F224"
+    },
+    "17": {
+        "Title": "INTRODUCTORY PSYCHOLOGY",
+        "Units": 3,
+        "IC": "TANU SHUKLA",
+        "CourseID": "GS F232"
+    },
+    "19": {
+        "Title": "CURRENT AFFAIRS",
+        "Units": 3,
+        "IC": "SANJIV KUMAR CHOUDHARY",
+        "CourseID": "GS F243"
+    },
+    "21": {
+        "Title": "EFFECTIVE PUBLIC SPEAK",
+        "Units": 3,
+        "IC": "PUSHP LATA",
+        "CourseID": "GS F245"
+    },
+    "22": {
+        "Title": "STUDY PROJECT",
+        "Units": 3,
+        "IC": "DEVIKA",
+        "CourseID": "GS F266"
+    },
+    "23": {
+        "Title": "INTRO TO CONFLICT MGMT",
+        "Units": 3,
+        "IC": "MADHURIMA DAS",
+        "CourseID": "GS F311"
+    },
+    "25": {
+        "Title": "APPLIED PHILOSOPHY",
+        "Units": 3,
+        "IC": "KUMAR NEERAJ SACHDEV",
+        "CourseID": "GS F312"
+    },
+    "26": {
+        "Title": "MARXIAN THOUGHTS",
+        "Units": 3,
+        "IC": "PAUL MATHEW",
+        "CourseID": "GS F313"
+    },
+    "28": {
+        "Title": "MASS MEDIA & CONTENT DES",
+        "Units": 3,
+        "IC": "VIRENDRA SINGH NIRBAN",
+        "CourseID": "GS F321"
+    },
+    "31": {
+        "Title": "CRITI ANAL OF LIT & CINE",
+        "Units": 3,
+        "IC": "KUMAR BHATTACHARYA",
+        "CourseID": "GS F322"
+    },
+    "33": {
+        "Title": "TECH IN SOCIAL RESEARCH",
+        "Units": 3,
+        "IC": "TANU SHUKLA",
+        "CourseID": "GS F331"
+    },
+    "35": {
+        "Title": "COMPUTER MEDIATED COMM",
+        "Units": 3,
+        "IC": "VIRENDRA SINGH NIRBAN",
+        "CourseID": "GS F342"
+    },
+    "36": {
+        "Title": "COPYWRITING",
+        "Units": 2,
+        "IC": "GAJENDRA SINGH CHAUHAN",
+        "CourseID": "GS F344"
+    },
+    "38": {
+        "Title": "LABORATORY PROJECT",
+        "Units": 3,
+        "IC": "DEVIKA",
+        "CourseID": "GS F366"
+    },
+    "39": {
+        "Title": "DESIGN PROJECT",
+        "Units": 3,
+        "IC": "DEVIKA",
+        "CourseID": "GS F376"
+    },
+    "40": {
+        "Title": "LINGUISTICS",
+        "Units": 3,
+        "IC": "SANJIV KUMAR CHOUDHARY",
+        "CourseID": "HSS F222"
+    },
+    "42": {
+        "Title": "APPR OF INDIAN MUSIC",
+        "Units": 3,
+        "IC": "ANIL RAI",
+        "CourseID": "HSS F223"
+    },
+    "44": {
+        "Title": "CROSS CULTURAL SKILLS",
+        "Units": 3,
+        "IC": "PUSHP LATA",
+        "CourseID": "HSS F227"
+    },
+    "46": {
+        "Title": "MAIN TRENDS IN IND HIST",
+        "Units": 3,
+        "IC": "HARIKRISHNAN GOPINADHAN ..",
+        "CourseID": "HSS F233"
+    },
+    "48": {
+        "Title": "INTRODUCTORY PHILOSOPHY",
+        "Units": 3,
+        "IC": "ANUPAM YADAV",
+        "CourseID": "HSS F235"
+    },
+    "50": {
+        "Title": "SYMBOLIC LOGIC",
+        "Units": 3,
+        "IC": "ANUPAM YADAV",
+        "CourseID": "HSS F236"
+    },
+    "52": {
+        "Title": "SOCIAL INFORMATICS",
+        "Units": 3,
+        "IC": "VIRENDRA SINGH NIRBAN",
+        "CourseID": "HSS F247"
+    },
+    "54": {
+        "Title": "STUDY PROJECT",
+        "Units": 3,
+        "IC": "DEVIKA",
+        "CourseID": "HSS F266"
+    },
+    "55": {
+        "Title": "ORGANIZATIONAL PSYCHOLOGY",
+        "Units": 3,
+        "IC": "RAJNEESH CHOUBISA",
+        "CourseID": "HSS F323"
+    },
+    "57": {
+        "Title": "CINEMATIC ADAPTATION",
+        "Units": 3,
+        "IC": "DEVIKA",
+        "CourseID": "HSS F325"
+    },
+    "59": {
+        "Title": "HUMAN RESOURCE DEVELOP",
+        "Units": 3,
+        "IC": "RAJNEESH CHOUBISA",
+        "CourseID": "HSS F328"
+    },
+    "61": {
+        "Title": "MUSICOLOGY-AN INTRODUCTN",
+        "Units": 3,
+        "IC": "ANIL RAI",
+        "CourseID": "HSS F329"
+    },
+    "63": {
+        "Title": "CINEMATIC ART",
+        "Units": 3,
+        "IC": "MUHAMMED PUTHUSSERI",
+        "CourseID": "HSS F332"
+    },
+    "65": {
+        "Title": "SRIMAD BHAGAVAD GITA",
+        "Units": 3,
+        "IC": "VINAY CHAMOLA",
+        "CourseID": "HSS F334"
+    },
+    "66": {
+        "Title": "COMPARATIVE INDIAN LIT",
+        "Units": 3,
+        "IC": "KUMAR BHATTACHARYA",
+        "CourseID": "HSS F338"
+    },
+    "68": {
+        "Title": "PROFESSIONAL ETHICS",
+        "Units": 3,
+        "IC": "KUMAR NEERAJ SACHDEV",
+        "CourseID": "HSS F343"
+    },
+    "70": {
+        "Title": "GANDHIAN THOUGHTS",
+        "Units": 3,
+        "IC": "HARIKRISHNAN GOPINADHAN ..",
+        "CourseID": "HSS F345"
+    },
+    "72": {
+        "Title": "INTERNATIONAL RELATIONS",
+        "Units": 3,
+        "IC": "VEENA R",
+        "CourseID": "HSS F346"
+    }
+}
