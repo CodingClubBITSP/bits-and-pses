@@ -1,6 +1,8 @@
 import openpyxl
 
-file = openpyxl.load_workbook('/Users/ridham._1402/Desktop/dev/bits-and-pses/backend/Scrape/HuelData.xlsx')
+#replace your path for excel file here
+file = openpyxl.load_workbook('/Users/ridham._1402/Desktop/dev/bits-and-pses/backend/Scrape/HuelData.xlsx') 
+
 sheet = file['Huels']
 rows = sheet.max_row
 
