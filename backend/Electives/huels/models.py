@@ -6,5 +6,4 @@ class Courses(models.Model):
     CourseID=models.CharField(max_length=100)
     CourseName=models.CharField(max_length=100)
     Units=models.SmallIntegerField()
-    IC_Name=models.CharField(max_length=100)
 User = get_user_model()
