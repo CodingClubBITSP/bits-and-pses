@@ -9,10 +9,10 @@ class Courses(models.Model):
     CourseID=models.CharField(max_length=100)
     CourseName=models.CharField(max_length=100)
     Units=models.SmallIntegerField()
-    IC_Name=models.CharField(max_length=100,null=True)
+    
 
 class SemEntry(models.Model):
-    prof = models.CharField(max_length=50)
+    IC_Name = models.CharField(max_length=50, default="---")
     year = models.IntegerField(default=datetime.date.today().year)
     sem = models.IntegerField(choices=((1, 1), (2, 2)))
     overall_exp = models.DecimalField(max_digits=2, decimal_places=1)
@@ -23,7 +23,7 @@ class SemEntry(models.Model):
 
 class Review(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
-    course=models.ForeignKey(Courses, on_delete=models.CASCADE)
+    reviewed_course=models.ForeignKey(Courses, on_delete=models.CASCADE)
     sem=models.ManyToManyField(SemEntry)
     pr=models.IntegerField()
     experience=models.TextField(max_length=1000)

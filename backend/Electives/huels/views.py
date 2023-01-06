@@ -23,9 +23,20 @@ class CourseView(APIView):
     def get(self, request):
         course_id = request.data['CourseID']
         course = Courses.objects.filter(CourseID=course_id).first()
+        
         response  = []
         print(course)
         response.append({
                     "course_name": course.CourseName,
+                    "Units": course.Units,
+                    #"reviews":{reviews},
+                    #"pr":review.pr,
+
+
                 })
         return Response(response, status=status.HTTP_200_OK)
+
+
+
+
+
