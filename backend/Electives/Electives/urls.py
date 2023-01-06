@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from GoogleAuth.views import getUser
+from huels.views import *
 
 
 urlpatterns = [
@@ -24,4 +25,6 @@ urlpatterns = [
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
     path('dj-rest-auth/google/', getUser, name='google_login'),
+    path('courseview/', CourseView.as_view()),
+    path('courselist/', getAllCourseList),
 ]
