@@ -12,6 +12,7 @@ from rest_framework import status
 from rest_framework.views import APIView, Response
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .serializers import ReviewSerializer
 
 @csrf_exempt
 def getAllCourseList(request):
@@ -35,6 +36,28 @@ class CourseView(APIView):
 
                 })
         return Response(response, status=status.HTTP_200_OK)
+
+class ReviewView(APIView):
+    def post(self, request, *args, **kwargs):
+        data = { 
+            'user': request.user.id,
+            'reviewed_course': request.data.get('reviewed_task'),
+            'sem': request.data.get('sem'),
+            'pr': request.data.get('pr'),
+            'experience': request.data.get('experience'),
+            'liteness': request.data.get('liteness'),
+            'grade_sat': request.data.get('grade_sat'),
+            'positives': request.data.get('positives'),
+            'negatives': request.data.get('negatives'),
+            'tips': request.data.get('tips')
+        }
+        serializer = ReviewSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 
