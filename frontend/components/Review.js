@@ -5,7 +5,7 @@ export default function Review() {
   return (
     <>
       <div className="bg-[#F9F9F9] w-[100%]  mr-5">
-        <div className="flex items-center ">
+        <div className="flex items-center">
           <div className="group p-5 w-[25%] items-center hover:bg-white hover:text-[#2A9134] border-1 rounded-md">
             Positives
           </div>
