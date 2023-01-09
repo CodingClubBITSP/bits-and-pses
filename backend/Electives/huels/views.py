@@ -12,12 +12,22 @@ from rest_framework import status
 from rest_framework.views import APIView, Response
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework.decorators import api_view, renderer_classes
 
-@csrf_exempt
-def getAllCourseList(request):
-    SomeModel_json = serializers.serialize("json", Courses.objects.all())
-    data = {"Course List": SomeModel_json}
-    return JsonResponse(data)
+#@csrf_exempt
+class CourseList(APIView):
+    def get(self,request):
+        SomeModel_json = serializers.serialize("json", Courses.objects.all())
+        response1 = []
+        data = {"Course List": SomeModel_json}
+        courses = Courses.objects.all()
+        for course in courses:
+    
+            response1.append({ "course_name": course.CourseName,"CourseID" : course.CourseID,
+                    "Units": course.Units})
+
+        #return JsonResponse(data)
+        return Response(response1, status=status.HTTP_200_OK)
 
 class CourseView(APIView):
     def get(self, request):
