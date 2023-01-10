@@ -50,7 +50,7 @@ class ReviewView(APIView):
     def post(self, request, *args, **kwargs):
         data = { 
             'user': request.user.id,
-            'reviewed_course': request.data.get('reviewed_task'),
+            'reviewed_course': request.data.get('reviewed_course'),
             'sem': request.data.get('sem'),
             'pr': request.data.get('pr'),
             'experience': request.data.get('experience'),
