@@ -32,17 +32,14 @@ class CourseList(APIView):
 class CourseView(APIView):
     def get(self, request):
         course_id = request.data['CourseID']
-        course = Courses.objects.filter(CourseID=course_id).first()
-        
+        course = Courses.objects.filter(CourseID=course_id).first() 
+        sem=SemEntry.objects.filter(CourseID=course_id)    
+        review=Review.objects.filter(CourseID=course_id)
+
         response  = []
-        print(course)
         response.append({
                     "course_name": course.CourseName,
                     "Units": course.Units,
-                    #"reviews":{reviews},
-                    #"pr":review.pr,
-
-
                 })
         return Response(response, status=status.HTTP_200_OK)
 
@@ -56,9 +53,9 @@ class ReviewView(APIView):
             'experience': request.data.get('experience'),
             'liteness': request.data.get('liteness'),
             'grade_sat': request.data.get('grade_sat'),
-            'positives': request.data.get('positives'),
-            'negatives': request.data.get('negatives'),
-            'tips': request.data.get('tips')
+            # 'positives': request.data.get('positives'),
+            # 'negatives': request.data.get('negatives'),
+            # 'tips': request.data.get('tips')
         }
         serializer = ReviewSerializer(data=data)
         if serializer.is_valid():
