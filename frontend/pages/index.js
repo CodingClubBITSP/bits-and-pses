@@ -38,34 +38,32 @@ export default function Home() {
         />
       </Head>
 
-      {width < 768 ? (
-        <div className="flex flex-col justify-start w-full min-h-screen md:w-2/6 ">
-          <Search />
-          <Huels />
-          <Title />
-          <Description />
-          <Review />
-          <ReviewCard />
-          <Form />
-        </div>
-      ) : (
-        <div className="flex w-full flex-col">
-          <Navbar />
+      <div className="md:hidden flex flex-col justify-start w-full min-h-screen md:w-2/6 ">
+        <Search />
+        <Huels />
+        <Title />
+        <Description />
+        <Review />
+        <ReviewCard />
+        <Form />
+      </div>
 
-          <div className="flex">
-            <div className="w-1/3">
-              <HuelBig />
-            </div>
+      <div className="max-md:hidden flex w-full flex-col">
+        <Navbar />
 
-            <div className="flex flex-col w-2/3">
-              <Title />
-              <Description />
-              <Review />
-              <ReviewCard />
-            </div>
+        <div className="flex">
+          <div className="w-1/3">
+            <HuelBig />
+          </div>
+
+          <div className="flex flex-col w-2/3">
+            <Title />
+            <Description />
+            <Review />
+            <ReviewCard />
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
