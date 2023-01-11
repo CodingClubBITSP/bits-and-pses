@@ -1,6 +1,6 @@
 import "tailwindcss/tailwind.css";
-import Title from "../components/Title";
-import Description from "../components/Description";
+import Title from "../../components/Title";
+import Description from "../../components/Description";
 
 export default function Huel() {
   return (
