@@ -25,6 +25,7 @@ export default function HuelBig() {
           </div>
         </div>
       </div>
+
       <div className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl">
         <div className="text-[#666666] font-semibold text-lg">
           Applied Philosophy
@@ -38,32 +39,7 @@ export default function HuelBig() {
           </div>
         </div>
       </div>
-      <div className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl">
-        <div className="text-[#666666] font-semibold text-lg">
-          Applied Philosophy
-        </div>
-        <div className="flex gap-2">
-          <div className="px-1 text-[#2A9134] font-semibold bg-[#E9F4EA]">
-            HSS F311
-          </div>
-          <div className="px-1 text-[#89B6FF] font-semibold bg-[#EBF3FF]">
-            Huanities
-          </div>
-        </div>
-      </div>
-      <div className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl">
-        <div className="text-[#666666] font-semibold text-lg">
-          Applied Philosophy
-        </div>
-        <div className="flex gap-2">
-          <div className="px-1 text-[#2A9134] font-semibold bg-[#E9F4EA]">
-            HSS F311
-          </div>
-          <div className="px-1 text-[#89B6FF] font-semibold bg-[#EBF3FF]">
-            Huanities
-          </div>
-        </div>
-      </div>
+
       <div className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl">
         <div className="text-[#666666] font-semibold text-lg">
           Applied Philosophy
