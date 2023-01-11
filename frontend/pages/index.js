@@ -1,6 +1,6 @@
 import "tailwindcss/tailwind.css";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 // COMPONENTS
@@ -15,14 +15,22 @@ import Navbar from "../components/Navbar";
 import HuelBig from "../components/HuelBig";
 
 export default function Home() {
+  const [units, setUnits] = useState(0),
+    [name, setName] = useState("None");
+
   useEffect(() => {
     axios({
-      method: "GET",
+      method: "POST",
       url: "https://bits-and-pses.centralindia.cloudapp.azure.com/courseview/",
       data: { CourseID: "GS F243" },
-    }).then((response) => {
-      console.log(response);
-    });
+    })
+      .then((response) => {
+        const data = response.data[0];
+
+        setUnits(data.Units);
+        setName(data.course_name);
+      })
+      .catch((err) => console.log(err.request));
   }, []);
 
   return (
@@ -55,7 +63,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col w-2/3">
-            <Title />
+            <Title name={name} units={units} />
             <Description />
             <Review />
             <ReviewCard />
