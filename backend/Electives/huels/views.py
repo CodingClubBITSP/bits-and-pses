@@ -69,12 +69,15 @@ class CourseView(APIView):
 
 class ReviewView(APIView):
     def post(self, request, *args, **kwargs):
+        course= request.data['course']
+        # sem= request.data['sem']
+        course_obj = Courses.objects.filter(CourseName = course).first()
+        sementry=SemEntry.objects.filter(course=course_obj).first()
         data = { 
             'user': request.user.id,
-            'reviewed_course': request.data.get('reviewed_course'),
-            'sem': request.data.get('sem'),
+            'sem': sementry.id,
             'pr': request.data.get('pr'),
-            'experience': request.data.get('experience'),
+            'overall_exp': request.data.get('overall_exp'),
             'liteness': request.data.get('liteness'),
             'grade_sat': request.data.get('grade_sat'),
             'tips': request.data.get('tips')
