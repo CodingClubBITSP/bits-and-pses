@@ -42,13 +42,13 @@ class CourseView(APIView):
         overalllist=[]
         litenesslist=[]
         gradinglist=[]
-        reviewuserlist=[]
+        reviews={}
         for r in review:
              prlist.append(r.pr)
              overalllist.append(r.overall_exp)
              litenesslist.append(r.liteness)
              gradinglist.append(r.grade_sat)
-             reviewuserlist.append(r.user)
+             reviews[r.user.get_username()]=r.tips
         prmedian=statistics.median(prlist)
         experiencemedian=statistics.median(overalllist)
         litenessmedian=statistics.median(litenesslist)
@@ -62,11 +62,8 @@ class CourseView(APIView):
                     "overall_exp":experiencemedian,
                     "liteness":litenessmedian,
                     "grade_sat":gradingmedian,
-                    
 
-                    
-
-
+                    "Reviews":reviews,
                 })
         return Response(response, status=status.HTTP_200_OK)
 
@@ -74,14 +71,12 @@ class ReviewView(APIView):
     def post(self, request, *args, **kwargs):
         data = { 
             'user': request.user.id,
-            'reviewed_course': request.data.get('reviewed_task'),
+            'reviewed_course': request.data.get('reviewed_course'),
             'sem': request.data.get('sem'),
             'pr': request.data.get('pr'),
             'experience': request.data.get('experience'),
             'liteness': request.data.get('liteness'),
             'grade_sat': request.data.get('grade_sat'),
-            'positives': request.data.get('positives'),
-            'negatives': request.data.get('negatives'),
             'tips': request.data.get('tips')
         }
         serializer = ReviewSerializer(data=data)

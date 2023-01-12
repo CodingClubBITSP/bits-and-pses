@@ -21,8 +21,8 @@ class SemEntry(models.Model):
     course=models.ForeignKey(Courses, on_delete=models.CASCADE,null=True)
 
 class Review(models.Model):
-    user=models.ForeignKey(User, on_delete=models.CASCADE)
-    sem=models.ForeignKey(SemEntry, on_delete=models.CASCADE)
+    user=models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    sem=models.ForeignKey(SemEntry, on_delete=models.CASCADE,null=True)
     pr=models.IntegerField()
     overall_exp = models.DecimalField(max_digits=2, decimal_places=1)
     liteness = models.DecimalField(max_digits=2, decimal_places=1)
