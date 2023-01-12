@@ -9,7 +9,6 @@ class Courses(models.Model):
     CourseID=models.CharField(max_length=100)
     CourseName=models.CharField(max_length=100)
     Units=models.SmallIntegerField()
-    
 
 class SemEntry(models.Model):
     IC_Name = models.CharField(max_length=50, default="---")
@@ -23,12 +22,9 @@ class SemEntry(models.Model):
 
 class Review(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
-    reviewed_course=models.ForeignKey(Courses, on_delete=models.CASCADE)
-    sem=models.ManyToManyField(SemEntry)
+    sem=models.ForeignKey(SemEntry, on_delete=models.CASCADE)
     pr=models.IntegerField()
-    experience=models.TextField(max_length=1000)
-    liteness= models.IntegerField(default=0)
-    grade_sat=models.IntegerField(default=0)
-    # positives=models.TextField(max_length=500)
-    # negatives=models.TextField(max_length=500)
-    # tips=models.TextField(max_length=500)
+    overall_exp = models.DecimalField(max_digits=2, decimal_places=1)
+    liteness = models.DecimalField(max_digits=2, decimal_places=1)
+    grade_sat = models.DecimalField(max_digits=2, decimal_places=1)
+    tips=models.TextField(max_length=500)
