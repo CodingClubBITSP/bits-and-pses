@@ -13,6 +13,7 @@ from rest_framework.views import APIView, Response
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .serializers import ReviewSerializer
+import statistics
 
 #@csrf_exempt
 class CourseList(APIView):
@@ -28,18 +29,44 @@ class CourseList(APIView):
 
         #return JsonResponse(data)
         return Response(response1, status=status.HTTP_200_OK)
-
 class CourseView(APIView):
-    def get(self, request):
+    def post(self, request):
+        temp=request.data
         course_id = request.data['CourseID']
-        course = Courses.objects.filter(CourseID=course_id).first() 
-        sem=SemEntry.objects.filter(CourseID=course_id)    
-        review=Review.objects.filter(CourseID=course_id)
-
+        course = Courses.objects.filter(CourseID=course_id).first()
+        sem=SemEntry.objects.filter(course=course).first()
         response  = []
+        print(course)
+        review=Review.objects.filter(sem=sem)
+        prlist=[]
+        overalllist=[]
+        litenesslist=[]
+        gradinglist=[]
+        reviewuserlist=[]
+        for r in review:
+             prlist.append(r.pr)
+             overalllist.append(r.overall_exp)
+             litenesslist.append(r.liteness)
+             gradinglist.append(r.grade_sat)
+             reviewuserlist.append(r.user)
+        prmedian=statistics.median(prlist)
+        experiencemedian=statistics.median(overalllist)
+        litenessmedian=statistics.median(litenesslist)
+        gradingmedian=statistics.median(gradinglist)
         response.append({
-                    "course_name": course.CourseName,
+                    "CourseID": course.CourseID,  
+                    "CourseName": course.CourseName,
                     "Units": course.Units,
+                    "IC_Name":sem.IC_Name,
+                    "pr":prmedian,
+                    "overall_exp":experiencemedian,
+                    "liteness":litenessmedian,
+                    "grade_sat":gradingmedian,
+                    
+
+                    
+
+
                 })
         return Response(response, status=status.HTTP_200_OK)
 
@@ -47,15 +74,15 @@ class ReviewView(APIView):
     def post(self, request, *args, **kwargs):
         data = { 
             'user': request.user.id,
-            'reviewed_course': request.data.get('reviewed_course'),
+            'reviewed_course': request.data.get('reviewed_task'),
             'sem': request.data.get('sem'),
             'pr': request.data.get('pr'),
             'experience': request.data.get('experience'),
             'liteness': request.data.get('liteness'),
             'grade_sat': request.data.get('grade_sat'),
-            # 'positives': request.data.get('positives'),
-            # 'negatives': request.data.get('negatives'),
-            # 'tips': request.data.get('tips')
+            'positives': request.data.get('positives'),
+            'negatives': request.data.get('negatives'),
+            'tips': request.data.get('tips')
         }
         serializer = ReviewSerializer(data=data)
         if serializer.is_valid():
@@ -63,9 +90,3 @@ class ReviewView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
-
-
-
