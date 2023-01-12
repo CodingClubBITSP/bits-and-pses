@@ -1,4 +1,16 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 export default function Huels() {
+  const [data, setData] = useState({})
+  const url = "https://bits-and-pses.centralindia.cloudapp.azure.com/courselist/"
+  useEffect(() => {
+    axios.get(url).then((response) => {
+      setData(response.data)
+      console.log(response.data)
+    })
+  }, []);
+
   return (
     <div className="bg-[#F9F9F9] min-h-full w-full">
       <div className="flex justify-end">
@@ -6,71 +18,22 @@ export default function Huels() {
           FILTER
         </button>
       </div>
-      <div className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl">
-        <div className="text-[#666666] font-semibold text-lg">
-          Applied Philosophy
+      {data.map((course) => (
+        <div key={course} className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl">
+          <div className="text-[#666666] font-semibold text-lg">
+          {course.course_name}
         </div>
         <div className="flex gap-2">
           <div className="px-1 text-[#2A9134] font-semibold bg-[#E9F4EA]">
-            HSS F311
+            {course.CourseID}
           </div>
           <div className="px-1 text-[#89B6FF] font-semibold bg-[#EBF3FF]">
-            Huanities
+            Humanity Elective
           </div>
         </div>
-      </div>
-      <div className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl">
-        <div className="text-[#666666] font-semibold text-lg">
-          Applied Philosophy
         </div>
-        <div className="flex gap-2">
-          <div className="px-1 text-[#2A9134] font-semibold bg-[#E9F4EA]">
-            HSS F311
-          </div>
-          <div className="px-1 text-[#89B6FF] font-semibold bg-[#EBF3FF]">
-            Huanities
-          </div>
-        </div>
-      </div>
-      <div className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl">
-        <div className="text-[#666666] font-semibold text-lg">
-          Applied Philosophy
-        </div>
-        <div className="flex gap-2">
-          <div className="px-1 text-[#2A9134] font-semibold bg-[#E9F4EA]">
-            HSS F311
-          </div>
-          <div className="px-1 text-[#89B6FF] font-semibold bg-[#EBF3FF]">
-            Huanities
-          </div>
-        </div>
-      </div>
-      <div className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl">
-        <div className="text-[#666666] font-semibold text-lg">
-          Applied Philosophy
-        </div>
-        <div className="flex gap-2">
-          <div className="px-1 text-[#2A9134] font-semibold bg-[#E9F4EA]">
-            HSS F311
-          </div>
-          <div className="px-1 text-[#89B6FF] font-semibold bg-[#EBF3FF]">
-            Huanities
-          </div>
-        </div>
-      </div>
-      <div className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl">
-        <div className="text-[#666666] font-semibold text-lg">
-          Applied Philosophy
-        </div>
-        <div className="flex gap-2">
-          <div className="px-1 text-[#2A9134] font-semibold bg-[#E9F4EA]">
-            HSS F311
-          </div>
-          <div className="px-1 text-[#89B6FF] font-semibold bg-[#EBF3FF]">
-            Huanities
-          </div>
-        </div>
-      </div>
+      ))}
+      
     </div>
   );
 }
