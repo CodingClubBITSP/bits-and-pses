@@ -45,7 +45,6 @@ export default function Home() {
       </Head>
 
       <div className="md:hidden flex flex-col justify-start w-full min-h-screen md:w-2/6 ">
-        <Search />
         <Huels />
         <Title />
         <Description />
