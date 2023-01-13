@@ -2,20 +2,30 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function HuelBig() {
-  const [data, setData] = useState({})
+  const [data, setData] = useState([])
   const url = "https://bits-and-pses.centralindia.cloudapp.azure.com/courselist/"
   useEffect(() => {
     axios.get(url).then((response) => {
       setData(response.data)
-      console.log(response.data)
     })
   }, []);
+  
+  const [search, setNewSearch] = useState("");
+
+  const handleSearchChange = (e) => {
+    setNewSearch(e.target.value);
+  };
+
+  const filtered = !search ? data : data.filter((course) =>
+        course.course_name.toLowerCase().includes(search.toLowerCase())
+      );
 
   return (
     <div className="bg-[#F9F9F9] min-h-full w-full">
       <input
         type="text"
         className="p-2 border-2 rounded-md m-2 w-[calc(33vw-1rem)]"
+        value={search} onChange={handleSearchChange}
       />
 
       <div className="flex justify-end">
@@ -23,7 +33,7 @@ export default function HuelBig() {
           FILTER
         </button>
       </div>
-      {data.map((course) => (
+      {filtered.map((course) => (
         <div key={course} className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl">
           <div className="text-[#666666] font-semibold text-lg">
             {course.course_name}
