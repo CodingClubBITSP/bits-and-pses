@@ -4,10 +4,9 @@ export default function StarRating({ title, validate = false }) {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   return (
-    <div className="mb-4 mx-2 border-none cursor-pointer outline-none">
+    <div className="mb-4 mx-2 flex-col items-center justify-center border-none cursor-pointer outline-none flex">
       <label className="font-bold text-xs"> {title} </label>
-      <br />
-      <div className=" ">
+      <div className="gap-4 flex">
         {[...Array(5)].map((star, index) => {
           index += 1;
           return (
@@ -16,8 +15,8 @@ export default function StarRating({ title, validate = false }) {
               key={index}
               className={
                 index <= (hover || rating)
-                  ? " px-2 bg-transparent border-none cursor-pointer outline-none text-[#2A9134]"
-                  : "px-2 bg-transparent border-none cursor-pointer outline-none text-[#ccc]"
+                  ? "bg-transparent border-none cursor-pointer outline-none text-[#2A9134]"
+                  : "bg-transparent border-none cursor-pointer outline-none text-[#ccc]"
               }
               onClick={() => setRating(index)}
               onMouseEnter={() => setHover(index)}

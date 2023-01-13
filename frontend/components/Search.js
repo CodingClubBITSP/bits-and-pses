@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function Search() {
   const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [found, setFound] = useState([]);
 
   if (open) console.log("yes");
@@ -29,7 +29,7 @@ export default function Search() {
   //     setFound(data);
   //   }
   //   setSearch(keyword);
-  // };  
+  // };
 
   return (
     <div className="bg-[#E0E0E0] gap-5 p-4 flex flex-col justify-center pt-8">
