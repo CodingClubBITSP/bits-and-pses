@@ -1,27 +1,27 @@
+import { useState } from "react";
 import { InputWithText } from "../components/InputWithText";
 import StarRating from "../components/StarRating";
-import { useState } from "react";
 
 export default function FormValidation() {
   const [user, setUser] = useState({
-    Name: "",
+    name: "",
     course: "",
     code: "",
     expRating: "",
     difficultyRating: "",
     gradingRating: "",
-    Feedback: "",
+    feedback: "",
   });
   const [startValidation, setValidation] = useState(false);
 
   const onClick = () => {
     setValidation(true);
     if (
-      user.Name === "" ||
+      user.name === "" ||
       user.expRating === "" ||
       user.difficultyRating === "" ||
       user.gradingRating === "" ||
-      user.Feedback === ""
+      user.feedback === ""
     )
       return;
   };
@@ -35,9 +35,9 @@ export default function FormValidation() {
           <InputWithText
             title={"Name"}
             onChange={() => {
-              setUser({ ...user, Name: event.target.value });
+              setUser({ ...user, name: event.target.value });
             }}
-            validate={startValidation ? user.Name === "" : false}
+            validate={startValidation ? user.name === "" : false}
           />
           <InputWithText
             title={"Course Name"}
@@ -54,25 +54,27 @@ export default function FormValidation() {
             validate={startValidation ? user.code === "" : false}
           />
 
-          <StarRating title={"Rate your experience with course"} />
-          <StarRating title={"Rate difficulty of course"} />
-          <StarRating title={"Rate grading of course"} />
+          <div className="flex flex-col p-1 gap-1 justify-center items-center">
+            <StarRating title={"Rate difficulty of this course"} />
+            <StarRating title={"Personal experience with course"} />
+            <StarRating title={"Rate grading of this course"} />
+          </div>
 
           <InputWithText
             title={"Feedback"}
             onChange={() => {
-              setUser({ ...user, Feedback: event.target.value });
+              setUser({ ...user, feedback: event.target.value });
             }}
-            validate={startValidation ? user.Feedback === "" : false}
+            validate={startValidation ? user.feedback === "" : false}
           />
 
-          <div className="m-2">
+          <div className="my-2">
             <button
-              className="bg-[#0353A4] hover:bg-slate-800 text-white text-sm font-medium p-2 rounded "
+              className="bg-[#0353A4] hover:bg-slate-800 text-white text-sm font-medium py-2 px-4 rounded "
               type="button"
               onClick={onClick}
             >
-              <>Submit</>
+              Submit
             </button>
           </div>
         </div>
