@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Review() {
+export default function Review({ data }) {
   const [resp, setResp] = useState("neutral");
 
   return (

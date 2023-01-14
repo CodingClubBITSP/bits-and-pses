@@ -12,26 +12,29 @@ import Navbar from "../components/Navbar";
 import HuelBig from "../components/HuelBig";
 
 export default function Home() {
-  const [units, setUnits] = useState(0),
-    [ID, setID] = useState("GS F243"),
-    [name, setName] = useState("- NA -");
+  const [ID, setID] = useState(),
+    [data, setData] = useState({
+      CourseID: "GS FXXX",
+      CourseName: "- NA -",
+      IC_Name: "None",
+      Units: 0,
+      grade_sat: 0,
+      liteness: 0,
+      overall_exp: 0,
+      pr: 0,
+    });
 
   useEffect(() => {
     search(ID);
   }, [ID]);
 
-  const search = (ID) =>
+  const search = (id) =>
     axios({
       method: "POST",
       url: "https://bits-and-pses.centralindia.cloudapp.azure.com/courseview/",
-      data: { CourseID: ID },
+      data: { CourseID: id },
     })
-      .then((response) => {
-        const data = response.data[0];
-
-        setUnits(data.Units);
-        setName(data.course_name);
-      })
+      .then((response) => setData(response.data[0]))
       .catch((err) => console.log("ERROR : ", err.request));
 
   return (
@@ -46,7 +49,7 @@ export default function Home() {
       </Head>
 
       <div className="md:hidden font-poppins flex flex-col justify-start w-full min-h-screen md:w-2/6 ">
-        <Huels ID={ID} setID={setID} />
+        <Huels setID={setID} />
       </div>
 
       <div className="max-md:hidden font-poppins  overflow-hidden max-h-screen flex w-full flex-col">
@@ -58,9 +61,9 @@ export default function Home() {
           </div>
 
           <div className="max-h-[calc(100vh-3rem)] overflow-x-hidden overflow-y-scroll flex flex-col w-2/3">
-            <Title name={name} units={units} />
-            <Description />
-            <Review />
+            <Title data={data} />
+            <Description data={data} />
+            <Review data={data} />
           </div>
         </div>
       </div>

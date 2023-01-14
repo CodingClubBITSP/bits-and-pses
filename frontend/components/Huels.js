@@ -3,11 +3,18 @@ import axios from "axios";
 import { Spin as Hamburger } from "hamburger-react";
 import Link from "next/link";
 
-export default function Huels({ ID, setID }) {
-  const [data, setData] = useState([
-      { course_name: "- NA -", CourseID: "GS FXXX", Units: 0 },
-    ]),
-    [search, setNewSearch] = useState("");
+export default function Huels({ setID }) {
+  const [search, setNewSearch] = useState(""),
+    [data, setData] = useState({
+      CourseID: "GS FXXX",
+      CourseName: "- NA -",
+      Units: 0,
+      IC_Name: "None",
+      pr: 0,
+      overall_exp: 0,
+      liteness: 0,
+      grade_sat: 0,
+    });
 
   useEffect(() => {
     axios
@@ -41,6 +48,7 @@ export default function Huels({ ID, setID }) {
             type="text"
             className="p-2 rounded-md w-[70vw]"
             value={search}
+            placeholder="search by name"
             onChange={handleSearchChange}
           />
         </div>
@@ -53,7 +61,7 @@ export default function Huels({ ID, setID }) {
           </button>
         </div>
 
-        {filtered.map((course) => (
+        {Array.from(filtered).map((course) => (
           <Link href={`/huel/${course.CourseID}`}>
             <div
               onClick={() => {

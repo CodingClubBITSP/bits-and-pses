@@ -27,6 +27,7 @@ export default function HuelBig({ ID, setID }) {
         type="text"
         className="p-2 border-2 rounded-md m-2 w-[calc(33vw-1.5rem)]"
         value={search}
+        placeholder="search by name"
         onChange={handleSearchChange}
       />
 
@@ -42,7 +43,7 @@ export default function HuelBig({ ID, setID }) {
             setID(course.CourseID);
           }}
           key={course.CourseID}
-          className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl"
+          className=" bg-white gap-2 shadow-sm flex-col flex justify-center items-start p-4 m-4 rounded-xl hover:cursor-pointer"
         >
           <div className="text-[#666666] font-bold text-lg">
             {course.course_name}

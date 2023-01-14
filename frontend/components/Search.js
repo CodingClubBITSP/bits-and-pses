@@ -22,7 +22,7 @@ export default function Search() {
 
   //   if (keyword !== '') {
   //     const results = data.filter((course_search) => {
-  //       return course_search.course_name.startsWith(keyword);
+  //       return course_search.CourseName.startsWith(keyword);
   //     });
   //     setFound(results);
   //   } else {

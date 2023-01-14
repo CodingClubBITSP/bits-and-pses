@@ -1,8 +1,9 @@
 import { InputWithText } from "../components/InputWithText";
 import StarRating from "../components/StarRating";
 import { useState } from "react";
+import { data } from "autoprefixer";
 
-export default function Description() {
+export default function Description({ data }) {
   const [toggle, setToggle] = useState(false),
     [startValidation, setValidation] = useState(false),
     [user, setUser] = useState({
@@ -103,7 +104,7 @@ export default function Description() {
 
       <div className=" bg-white shadow-sm flex m-4 rounded-xl lg:px-10">
         <span className="flex justify-center items-center p-4 pr-0 text-[#2A9134] text-4xl">
-          4 <span className="text-base pl-0 m-0">th</span>
+          {data.pr} <span className="text-base pl-0 m-0">th</span>
         </span>
         <span className="flex items-center justify-center text-[#8A8A8A] p-4 text-[14px]">
           most popular HuEl by PR number median
@@ -115,7 +116,10 @@ export default function Description() {
           What is it about ?
         </div>
         <div className="text-[14px] text-[#8A8A8A] lg:px-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae dolore ex suscipit ipsa consectetur laudantium delectus, repudiandae numquam tenetur dignissimos, doloremque sit ducimus, officiis aperiam doloribus explicabo dolorum natus quam?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+          dolore ex suscipit ipsa consectetur laudantium delectus, repudiandae
+          numquam tenetur dignissimos, doloremque sit ducimus, officiis aperiam
+          doloribus explicabo dolorum natus quam?
         </div>
       </div>
 
@@ -123,7 +127,7 @@ export default function Description() {
         <div className="bg-white shadow-sm flex justify-center items-center m-4 rounded-xl lg:flex-1">
           <div className="flex rounded-full border-4 border-[#9B9B9B] h-[58px] w-[60px] m-3 text-2xl items-center justify-center text-[#2A9134]">
             {" "}
-            <div>5.0</div>
+            <div>{data.overall_exp}</div>
           </div>
           <span className="flex items-center text-[#8A8A8A] p-4 text-[14px] w-3/4">
             Overall experience of the course
@@ -135,13 +139,13 @@ export default function Description() {
             Liteness of the course
           </span>
           <span className="flex rounded-full border-4 border-[#9B9B9B] h-[58px] w-[60px] m-3 text-2xl items-center justify-center text-[#2A9134] ">
-            5.0
+            {data.liteness}
           </span>
         </div>
 
         <div className="bg-white shadow-sm flex justify-center items-center m-4 rounded-xl lg:flex-1">
           <span className="flex rounded-full border-4 border-[#9B9B9B] h-[58px] w-[60px] m-3 text-2xl items-center justify-center text-[#2A9134]">
-            5.0
+            {data.grade_sat}
           </span>
           <span className="flex items-center text-[#8A8A8A] p-4 text-[14px] w-3/4">
             Satisfaction with the grading
