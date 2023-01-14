@@ -7,7 +7,9 @@ export default function Title({ data }) {
 
       <div className=" w-1/2 lg:px-10 lg:flex lg:flex-col lg:items-end lg:justify-end ">
         <div className="text-green-600 font-light">{data.CourseID}</div>
-        <div className="text-[#8A8A8A] font-light">Taken by: {data.IC_Name}</div>
+        <div className="text-[#8A8A8A] font-light">
+          Taken by: {data.IC_Name}
+        </div>
         <div className="text-[#8A8A8A] font-light">
           Credits on Completion: {data.Units}
         </div>
