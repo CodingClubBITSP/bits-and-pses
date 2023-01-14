@@ -60,27 +60,37 @@ class CourseView(APIView):
             litenesslist.append(r.liteness)
             gradinglist.append(r.grade_sat)
             reviews[r.user.get_username()] = r.tips
+        
+        
+        res_dict = {}
+        if(course):
+            res_dict["CourseID"] = course.CourseID
+            res_dict["CourseName"] = course.CourseName
+            res_dict["Units"] = course.Units
+        if(sem):
+            res_dict["IC_Name"] = sem.IC_Name
         if prlist:
             prmedian = statistics.median(prlist)
+            res_dict["pr"] = prmedian
         if overalllist:
             experiencemedian = statistics.median(overalllist)
+            res_dict["overall_exp"] = experiencemedian
         if litenesslist:
             litenessmedian = statistics.median(litenesslist)
+            res_dict["liteness"] = litenessmedian
         if gradinglist:
             gradingmedian = statistics.median(gradinglist)
-        response.append(
-            {
-                "CourseID": course.CourseID,
-                "CourseName": course.CourseName,
-                "Units": course.Units,
-                "IC_Name": sem.IC_Name,
-                "pr": prmedian,
-                "overall_exp": experiencemedian,
-                "liteness": litenessmedian,
-                "grade_sat": gradingmedian,
-                "Reviews": reviews,
-            }
+            res_dict["grade_sat"] = gradingmedian
+        if(reviews):
+            res_dict["Reviews"] = reviews
+
+        if(res_dict=={}):
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        else:
+            response.append(
+            res_dict
         )
+
         return Response(response, status=status.HTTP_200_OK)
 
 
