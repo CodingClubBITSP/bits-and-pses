@@ -15,72 +15,89 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .serializers import ReviewSerializer
 import statistics
 
-#@csrf_exempt
+# @csrf_exempt
 class CourseList(APIView):
-    def get(self,request):
+    def get(self, request):
         SomeModel_json = serializers.serialize("json", Courses.objects.all())
         response1 = []
         data = {"Course List": SomeModel_json}
         courses = Courses.objects.all()
         for course in courses:
-    
-            response1.append({ "course_name": course.CourseName,"CourseID" : course.CourseID,
-                    "Units": course.Units})
 
-        #return JsonResponse(data)
+            response1.append(
+                {
+                    "course_name": course.CourseName,
+                    "CourseID": course.CourseID,
+                    "Units": course.Units,
+                }
+            )
+
+        # return JsonResponse(data)
         return Response(response1, status=status.HTTP_200_OK)
+
+
 class CourseView(APIView):
     def post(self, request):
-        temp=request.data
-        course_id = request.data['CourseID']
+        temp = request.data
+        course_id = request.data["CourseID"]
         course = Courses.objects.filter(CourseID=course_id).first()
-        sem=SemEntry.objects.filter(course=course).first()
-        response  = []
+        sem = SemEntry.objects.filter(course=course).first()
+        response = []
         print(course)
-        review=Review.objects.filter(sem=sem)
-        prlist=[]
-        overalllist=[]
-        litenesslist=[]
-        gradinglist=[]
-        reviews={}
+        review = Review.objects.filter(sem=sem)
+        prlist = []
+        overalllist = []
+        litenesslist = []
+        gradinglist = []
+        prmedian = 0
+        experiencemedian = 0
+        litenessmedian = 0
+        gradingmedian = 0
+        reviews = {}
         for r in review:
-             prlist.append(r.pr)
-             overalllist.append(r.overall_exp)
-             litenesslist.append(r.liteness)
-             gradinglist.append(r.grade_sat)
-             reviews[r.user.get_username()]=r.tips
-        prmedian=statistics.median(prlist)
-        experiencemedian=statistics.median(overalllist)
-        litenessmedian=statistics.median(litenesslist)
-        gradingmedian=statistics.median(gradinglist)
-        response.append({
-                    "CourseID": course.CourseID,  
-                    "CourseName": course.CourseName,
-                    "Units": course.Units,
-                    "IC_Name":sem.IC_Name,
-                    "pr":prmedian,
-                    "overall_exp":experiencemedian,
-                    "liteness":litenessmedian,
-                    "grade_sat":gradingmedian,
-
-                    "Reviews":reviews,
-                })
+            prlist.append(r.pr)
+            overalllist.append(r.overall_exp)
+            litenesslist.append(r.liteness)
+            gradinglist.append(r.grade_sat)
+            reviews[r.user.get_username()] = r.tips
+        if prlist:
+            prmedian = statistics.median(prlist)
+        if overalllist:
+            experiencemedian = statistics.median(overalllist)
+        if litenesslist:
+            litenessmedian = statistics.median(litenesslist)
+        if gradinglist:
+            gradingmedian = statistics.median(gradinglist)
+        response.append(
+            {
+                "CourseID": course.CourseID,
+                "CourseName": course.CourseName,
+                "Units": course.Units,
+                "IC_Name": sem.IC_Name,
+                "pr": prmedian,
+                "overall_exp": experiencemedian,
+                "liteness": litenessmedian,
+                "grade_sat": gradingmedian,
+                "Reviews": reviews,
+            }
+        )
         return Response(response, status=status.HTTP_200_OK)
+
 
 class ReviewView(APIView):
     def post(self, request, *args, **kwargs):
-        course= request.data['course']
+        course = request.data["course"]
         # sem= request.data['sem']
-        course_obj = Courses.objects.filter(CourseName = course).first()
-        sementry=SemEntry.objects.filter(course=course_obj).first()
-        data = { 
-            'user': request.user.id,
-            'sem': sementry.id,
-            'pr': request.data.get('pr'),
-            'overall_exp': request.data.get('overall_exp'),
-            'liteness': request.data.get('liteness'),
-            'grade_sat': request.data.get('grade_sat'),
-            'tips': request.data.get('tips')
+        course_obj = Courses.objects.filter(CourseName=course).first()
+        sementry = SemEntry.objects.filter(course=course_obj).first()
+        data = {
+            "user": request.user.id,
+            "sem": sementry.id,
+            "pr": request.data.get("pr"),
+            "overall_exp": request.data.get("overall_exp"),
+            "liteness": request.data.get("liteness"),
+            "grade_sat": request.data.get("grade_sat"),
+            "tips": request.data.get("tips"),
         }
         serializer = ReviewSerializer(data=data)
         if serializer.is_valid():
