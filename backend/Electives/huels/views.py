@@ -69,18 +69,28 @@ class CourseView(APIView):
             res_dict["Units"] = course.Units
         if(sem):
             res_dict["IC_Name"] = sem.IC_Name
+        else:
+            res_dict["IC_Name"] = "Null"
         if prlist:
             prmedian = statistics.median(prlist)
             res_dict["pr"] = prmedian
+        else:
+            res_dict["pr"] = 0
         if overalllist:
             experiencemedian = statistics.median(overalllist)
             res_dict["overall_exp"] = experiencemedian
+        else:
+            res_dict["overall_exp"] = 0
         if litenesslist:
             litenessmedian = statistics.median(litenesslist)
             res_dict["liteness"] = litenessmedian
+        else:
+            res_dict["liteness"] = 0
         if gradinglist:
             gradingmedian = statistics.median(gradinglist)
             res_dict["grade_sat"] = gradingmedian
+        else:
+            res_dict["grade_sat"] = 0
         if(reviews):
             res_dict["Reviews"] = reviews
 
