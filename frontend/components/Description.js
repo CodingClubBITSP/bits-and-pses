@@ -1,31 +1,50 @@
 import { InputWithText } from "../components/InputWithText";
 import StarRating from "../components/StarRating";
 import { useState } from "react";
-import { data } from "autoprefixer";
+import axios from "axios";
 
 export default function Description({ data }) {
   const [toggle, setToggle] = useState(false),
     [startValidation, setValidation] = useState(false),
-    [user, setUser] = useState({
-      name: "",
+    [student, setStudent] = useState({
+      user: "",
       course: "",
+      sem: 2,
+      pr: 100,
       code: "",
-      expRating: "",
-      difficultyRating: "",
-      gradingRating: "",
-      feedback: "",
+      overall_exp: "",
+      liteness: "",
+      grade_sat: "",
+      tips: "",
     });
 
   const onClick = () => {
     setValidation(true);
     if (
-      user.name === "" ||
-      user.expRating === "" ||
-      user.difficultyRating === "" ||
-      user.gradingRating === "" ||
-      user.feedback === ""
-    )
-      return;
+      student.user === "" ||
+      student.overall_exp === "" ||
+      student.liteness === "" ||
+      student.grade_sat === "" ||
+      student.tips === ""
+      )
+      // {return;}
+
+      axios({
+        method: "POST",
+        url: "https://bits-and-pses.centralindia.cloudapp.azure.com/courseview/",
+        data: {
+          "course": student.course,
+          "user": student.user,
+          "sem": student.sem,
+          "pr": student.pr,
+          "overall_exp": student.overall_exp,
+          "liteness": student.liteness,
+          "grade_sat": student.grade_sat,
+          "tips": student.tips,
+        },
+      })
+      .catch((err) => console.log("ERROR : ", err.request));
+      alert("Feedback Submitted Successful")
   };
 
   return toggle ? (
@@ -36,40 +55,68 @@ export default function Description({ data }) {
         <div className="flex gap-4 w-full">
           <InputWithText
             title={"Name"}
-            onChange={() => {
-              setUser({ ...user, name: event.target.value });
+            onChange={(e) => {
+              setStudent({
+                ...student,
+                user : e.target.value
+              })
             }}
-            validate={startValidation ? user.name === "" : false}
+            validate={startValidation ? student.user === "" : false}
           />
           <InputWithText
             title={"Course Name"}
-            onChange={() => {
-              setUser({ ...user, course: event.target.value });
+            onChange={(e) => {
+              setStudent({
+                ...student,
+                course : e.target.value
+              })
             }}
-            validate={startValidation ? user.course === "" : false}
+            validate={startValidation ? student.course === "" : false}
           />
         </div>
 
         <InputWithText
           title={"Course Number"}
-          onChange={() => {
-            setUser({ ...user, code: event.target.value });
+          onChange={(e) => {
+            setStudent({
+              ...student,
+              code : e.target.value
+            })
           }}
-          validate={startValidation ? user.code === "" : false}
+          validate={startValidation ? student.code === "" : false}
         />
 
         <div className="flex justify-around items-center">
-          <StarRating title={"Personal experience with course"} />
-          <StarRating title={"Rate difficulty of this course"} />
-          <StarRating title={"Rate grading of this course"} />
+          <StarRating title={"Personal experience with course"} onChange={(value) => {
+              setStudent({
+                ...student,
+                overall_exp : value
+              })
+            }} />
+          <StarRating title={"Rate difficulty of this course"} onChange={(value) => {
+              setStudent({
+                ...student,
+                liteness : value
+              })
+            }}/>
+          <StarRating title={"Rate grading of this course"} onChange={(value) => {
+              setStudent({
+                ...student,
+                grade_sat : value
+              })
+            }}/>
         </div>
 
         <InputWithText
           title={"Feedback"}
-          onChange={() => {
-            setUser({ ...user, feedback: event.target.value });
+          onChange={(e) => {
+            setStudent({
+              ...student,
+              tips : e.target.value
+            });
+            console.log(student)
           }}
-          validate={startValidation ? user.feedback === "" : false}
+          validate={startValidation ? student.tips === "" : false}
         />
 
         <div className="m-2 flex justify-start gap-12">
