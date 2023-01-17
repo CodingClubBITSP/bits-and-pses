@@ -28,14 +28,14 @@ export default function Home() {
     search(ID);
   }, [ID]);
 
-  const search = (id) =>
+  const search = id =>
     axios({
       method: "POST",
       url: "https://bits-and-pses.centralindia.cloudapp.azure.com/courseview/",
       data: { CourseID: id },
     })
-      .then((response) => setData(response.data[0]))
-      .catch((err) => console.log("ERROR : ", err.request));
+      .then(response => setData(response.data[0]))
+      .catch(err => console.log("ERROR : ", err.request));
 
   return (
     <>
@@ -57,7 +57,7 @@ export default function Home() {
 
         <div className="flex">
           <div className="max-h-[calc(100vh-3rem)] overflow-x-hidden overflow-y-scroll w-1/3">
-            <HuelBig ID={ID} setID={setID} />
+            <HuelBig setID={setID} />
           </div>
 
           <div className="max-h-[calc(100vh-3rem)] overflow-x-hidden overflow-y-scroll flex flex-col w-2/3">

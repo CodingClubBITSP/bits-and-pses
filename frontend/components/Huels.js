@@ -4,6 +4,7 @@ import { Spin as Hamburger } from "hamburger-react";
 import Link from "next/link";
 
 export default function Huels({ setID }) {
+  const [open, setOpen] = useState(false);
   const [search, setNewSearch] = useState(""),
     [data, setData] = useState({
       CourseID: "GS FXXX",
@@ -19,14 +20,14 @@ export default function Huels({ setID }) {
   useEffect(() => {
     axios
       .get("https://bits-and-pses.centralindia.cloudapp.azure.com/courselist/")
-      .then((response) => setData(response.data));
+      .then(response => setData(response.data));
   }, []);
 
-  const handleSearchChange = (input) => setNewSearch(input.target.value);
+  const handleSearchChange = input => setNewSearch(input.target.value);
 
   const filtered = !search
     ? data
-    : data.filter((course) =>
+    : data.filter(course =>
         course.course_name.toLowerCase().includes(search.toLowerCase())
       );
 
@@ -41,7 +42,7 @@ export default function Huels({ setID }) {
               color="#4b5563"
               size={32}
               distance="sm"
-              onToggle={(toggled) => setOpen(toggled ? true : false)}
+              onToggle={toggled => setOpen(toggled ? true : false)}
             />
           </div>
           <input
@@ -61,7 +62,7 @@ export default function Huels({ setID }) {
           </button>
         </div>
 
-        {Array.from(filtered).map((course) => (
+        {Array.from(filtered).map(course => (
           <Link href={`/huel/${course.CourseID}`}>
             <div
               onClick={() => {

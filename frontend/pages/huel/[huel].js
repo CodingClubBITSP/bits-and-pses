@@ -27,14 +27,14 @@ export default function Huel() {
     search(ID);
   }, [ID]);
 
-  const search = (id) =>
+  const search = id =>
     axios({
       method: "POST",
       url: "https://bits-and-pses.centralindia.cloudapp.azure.com/courseview/",
       data: { CourseID: id },
     })
-      .then((response) => setData(response.data[0]))
-      .catch((err) => console.log("ERROR : ", err.request));
+      .then(response => setData(response.data[0]))
+      .catch(err => console.log("ERROR : ", err.request));
 
   return (
     <div className="flex flex-col justify-center md:w-2/6 ">

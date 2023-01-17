@@ -20,31 +20,32 @@ export default function Description({ data }) {
 
   const onClick = () => {
     setValidation(true);
+
     if (
       student.user === "" ||
       student.overall_exp === "" ||
       student.liteness === "" ||
       student.grade_sat === "" ||
       student.tips === ""
-      )
+    )
       // {return;}
 
       axios({
         method: "POST",
         url: "https://bits-and-pses.centralindia.cloudapp.azure.com/courseview/",
         data: {
-          "course": student.course,
-          "user": student.user,
-          "sem": student.sem,
-          "pr": student.pr,
-          "overall_exp": student.overall_exp,
-          "liteness": student.liteness,
-          "grade_sat": student.grade_sat,
-          "tips": student.tips,
+          course: student.course,
+          user: student.user,
+          sem: student.sem,
+          pr: student.pr,
+          overall_exp: student.overall_exp,
+          liteness: student.liteness,
+          grade_sat: student.grade_sat,
+          tips: student.tips,
         },
       })
-      .catch((err) => console.log("ERROR : ", err.request));
-      alert("Feedback Submitted Successful")
+        .then(res => alert("Submitted Successfully"))
+        .catch(err => console.log("ERROR : ", err.request));
   };
 
   return toggle ? (
@@ -55,21 +56,21 @@ export default function Description({ data }) {
         <div className="flex gap-4 w-full">
           <InputWithText
             title={"Name"}
-            onChange={(e) => {
+            onChange={e => {
               setStudent({
                 ...student,
-                user : e.target.value
-              })
+                user: e.target.value,
+              });
             }}
             validate={startValidation ? student.user === "" : false}
           />
           <InputWithText
             title={"Course Name"}
-            onChange={(e) => {
+            onChange={e => {
               setStudent({
                 ...student,
-                course : e.target.value
-              })
+                course: e.target.value,
+              });
             }}
             validate={startValidation ? student.course === "" : false}
           />
@@ -77,44 +78,53 @@ export default function Description({ data }) {
 
         <InputWithText
           title={"Course Number"}
-          onChange={(e) => {
+          onChange={e => {
             setStudent({
               ...student,
-              code : e.target.value
-            })
+              code: e.target.value,
+            });
           }}
           validate={startValidation ? student.code === "" : false}
         />
 
         <div className="flex justify-around items-center">
-          <StarRating title={"Personal experience with course"} onChange={(value) => {
+          <StarRating
+            title={"Personal experience with course"}
+            onChange={value => {
               setStudent({
                 ...student,
-                overall_exp : value
-              })
-            }} />
-          <StarRating title={"Rate difficulty of this course"} onChange={(value) => {
+                overall_exp: value,
+              });
+            }}
+          />
+          <StarRating
+            title={"Rate difficulty of this course"}
+            onChange={value => {
               setStudent({
                 ...student,
-                liteness : value
-              })
-            }}/>
-          <StarRating title={"Rate grading of this course"} onChange={(value) => {
+                liteness: value,
+              });
+            }}
+          />
+          <StarRating
+            title={"Rate grading of this course"}
+            onChange={value => {
               setStudent({
                 ...student,
-                grade_sat : value
-              })
-            }}/>
+                grade_sat: value,
+              });
+            }}
+          />
         </div>
 
         <InputWithText
           title={"Feedback"}
-          onChange={(e) => {
+          onChange={e => {
             setStudent({
               ...student,
-              tips : e.target.value
+              tips: e.target.value,
             });
-            console.log(student)
+            console.log(student);
           }}
           validate={startValidation ? student.tips === "" : false}
         />

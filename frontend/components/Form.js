@@ -3,18 +3,18 @@ import { InputWithText } from "../components/InputWithText";
 import StarRating from "../components/StarRating";
 
 export default function FormValidation() {
-  const [student, setStudent] = useState({
-    student: "",
-    course: "",
-    sem: 2,
-    pr: 100,
-    code: "",
-    overall_exp: "",
-    liteness: "",
-    grade_sat: "",
-    tips: "",
-  });
-  const [startValidation, setValidation] = useState(false);
+  const [startValidation, setValidation] = useState(false),
+    [student, setStudent] = useState({
+      student: "",
+      course: "",
+      sem: 2,
+      pr: 100,
+      code: "",
+      overall_exp: "",
+      liteness: "",
+      grade_sat: "",
+      tips: "",
+    });
 
   const onClick = () => {
     setValidation(true);
@@ -31,18 +31,18 @@ export default function FormValidation() {
         method: "POST",
         url: "https://bits-and-pses.centralindia.cloudapp.azure.com/courseview/",
         data: {
-          "course": student.course,
-          "student": student.student,
-          "sem": student.sem,
-          "pr": student.pr,
-          "overall_exp": student.overall_exp,
-          "liteness": student.liteness,
-          "grade_sat": student.grade_sat,
-          "tips": student.tips,
+          course: student.course,
+          student: student.student,
+          sem: student.sem,
+          pr: student.pr,
+          overall_exp: student.overall_exp,
+          liteness: student.liteness,
+          grade_sat: student.grade_sat,
+          tips: student.tips,
         },
       })
-      .catch((err) => console.log("ERROR : ", err.request));
-      alert("Feedback Submitted Successful")
+        .then(res => alert("Submitted Successfully"))
+        .catch(err => console.log("ERROR : ", err.request));
   };
 
   return (
@@ -53,64 +53,73 @@ export default function FormValidation() {
 
           <InputWithText
             title={"Name"}
-            onChange={(e) => {
+            onChange={e => {
               setStudent({
                 ...student,
-                student : e.target.value
-              })
+                student: e.target.value,
+              });
             }}
             validate={startValidation ? student.name === "" : false}
           />
           <InputWithText
             title={"Course Name"}
-            onChange={(e) => {
+            onChange={e => {
               setStudent({
                 ...student,
-                course : e.target.value
-              })
+                course: e.target.value,
+              });
             }}
             validate={startValidation ? student.course === "" : false}
           />
           <InputWithText
             title={"Course Number"}
-            onChange={(e) => {
+            onChange={e => {
               setStudent({
                 ...student,
-                code : e.target.value
-              })
+                code: e.target.value,
+              });
             }}
             validate={startValidation ? student.code === "" : false}
           />
 
           <div className="flex flex-col p-1 gap-1 justify-center items-center">
-            <StarRating title={"Rate difficulty of this course"} onChange={(value) => {
-              setStudent({
-                ...student,
-                overall_exp : value
-              })
-            }} />
-            <StarRating title={"Personal experience with course"} onChange={(value) => {
-              setStudent({
-                ...student,
-                liteness : value
-              })
-            }}/>
-            <StarRating title={"Rate grading of this course"} onChange={(value) => {
-              setStudent({
-                ...student,
-                grade_sat : value
-              })
-            }}/>
+            <StarRating
+              title={"Rate difficulty of this course"}
+              onChange={value => {
+                setStudent({
+                  ...student,
+                  overall_exp: value,
+                });
+              }}
+            />
+            <StarRating
+              title={"Personal experience with course"}
+              onChange={value => {
+                setStudent({
+                  ...student,
+                  liteness: value,
+                });
+              }}
+            />
+            <StarRating
+              title={"Rate grading of this course"}
+              onChange={value => {
+                setStudent({
+                  ...student,
+                  grade_sat: value,
+                });
+              }}
+            />
           </div>
 
           <InputWithText
             title={"Feedback"}
-            onChange={(e) => {
+            onChange={e => {
               setStudent({
                 ...student,
-                tips : e.target.value
+                tips: e.target.value,
               });
-              console.log(student)
+              console.log(student);
             }}
             validate={startValidation ? student.feedback === "" : false}
           />

@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function HuelBig({ ID, setID }) {
+export default function HuelBig({ setID }) {
   const [data, setData] = useState([]),
     [search, setNewSearch] = useState("");
 
   useEffect(() => {
     axios
       .get("https://bits-and-pses.centralindia.cloudapp.azure.com/courselist/")
-      .then((response) => {
+      .then(response => {
         setData(response.data);
       });
   }, []);
 
-  const handleSearchChange = (input) => setNewSearch(input.target.value);
+  const handleSearchChange = input => setNewSearch(input.target.value);
 
   const filtered = !search
     ? data
-    : data.filter((course) =>
+    : data.filter(course =>
         course.course_name.toLowerCase().includes(search.toLowerCase())
       );
 
@@ -37,7 +37,7 @@ export default function HuelBig({ ID, setID }) {
         </button>
       </div>
 
-      {filtered.map((course) => (
+      {filtered.map(course => (
         <div
           onClick={() => {
             setID(course.CourseID);
