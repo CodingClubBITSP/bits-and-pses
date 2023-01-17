@@ -184,7 +184,7 @@ export default function Description({ data }) {
         <div className="bg-white shadow-sm flex justify-center items-center m-4 rounded-xl lg:flex-1">
           <div className="flex rounded-full border-4 border-[#9B9B9B] h-[58px] w-[60px] m-3 text-2xl items-center justify-center text-[#2A9134]">
             {" "}
-            <div>{data.overall_exp}</div>
+            <div>{data.overall_exp.toFixed(1)}</div>
           </div>
           <span className="flex items-center text-[#8A8A8A] p-4 text-[14px] w-3/4">
             Overall experience of the course
@@ -196,13 +196,13 @@ export default function Description({ data }) {
             Liteness of the course
           </span>
           <span className="flex rounded-full border-4 border-[#9B9B9B] h-[58px] w-[60px] m-3 text-2xl items-center justify-center text-[#2A9134] ">
-            {data.liteness}
+            {data.liteness.toFixed(1)}
           </span>
         </div>
 
         <div className="bg-white shadow-sm flex justify-center items-center m-4 rounded-xl lg:flex-1">
           <span className="flex rounded-full border-4 border-[#9B9B9B] h-[58px] w-[60px] m-3 text-2xl items-center justify-center text-[#2A9134]">
-            {data.grade_sat}
+            {data.grade_sat.toFixed(1)}
           </span>
           <span className="flex items-center text-[#8A8A8A] p-4 text-[14px] w-3/4">
             Satisfaction with the grading

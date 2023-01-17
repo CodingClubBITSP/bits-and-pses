@@ -1,23 +1,47 @@
 import { useState } from "react";
 
 export default function Review({ data }) {
-  const [resp, setResp] = useState("neutral");
+  const [selected, setSelected] = useState(1);
+  const active =
+      "group p-5 w-[25%] items-center bg-white border-b-white font-semibold hover:bg-white hover:text-[#2A9134] border-2 hover:cursor-pointer rounded-t-md",
+    other =
+      "group p-5 w-[25%] items-center hover:bg-white hover:text-[#2A9134] border-2 hover:cursor-pointer rounded-t-md";
 
   return (
     <>
       <div className="bg-[#F9F9F9] w-[100%]  mr-5">
         <div className="flex items-center">
-          <div className="group p-5 w-[25%] items-center bg-white border-b-0  font-semibold  hover:text-[#2A9134] border-2 hover:cursor-pointer rounded-t-md">
-            Positives
+          <div
+            className={selected == 1 ? active : other}
+            onClick={() => {
+              setSelected(1);
+            }}
+          >
+            Positive Opn.
           </div>
-          <div className="group p-5 w-[25%] items-center hover:bg-white hover:text-[#2A9134] border-2 hover:cursor-pointer rounded-t-md">
-            Neutral
+          <div
+            className={selected == 2 ? active : other}
+            onClick={() => {
+              setSelected(2);
+            }}
+          >
+            Neutral Opn.
           </div>
-          <div className="group p-5 w-[25%] items-center hover:bg-white hover:text-[#2A9134] border-2 hover:cursor-pointer rounded-t-md">
-            Negatives
+          <div
+            className={selected == 3 ? active : other}
+            onClick={() => {
+              setSelected(3);
+            }}
+          >
+            Negative Opn.
           </div>
-          <div className="group p-5 w-[25%] items-center hover:bg-white hover:text-[#2A9134] border-2 hover:cursor-pointer rounded-t-md">
-            Tips
+          <div
+            className={selected == 4 ? active : other}
+            onClick={() => {
+              setSelected(4);
+            }}
+          >
+            General Tips
           </div>
         </div>
       </div>
