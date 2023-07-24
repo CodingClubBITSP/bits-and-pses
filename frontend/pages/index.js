@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>BITS & PSes</title>
+        <title>d</title>
         <link
           rel="shortcut icon"
           href="https://avatars.githubusercontent.com/u/39666368?s=200&v=4"
