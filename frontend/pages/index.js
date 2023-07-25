@@ -2,6 +2,7 @@ import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+ 
 
 // COMPONENTS
 import Huels from "../components/Huels";
