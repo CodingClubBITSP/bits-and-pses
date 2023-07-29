@@ -2,6 +2,7 @@ import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { GoogleOAuthProvider } from '@react-oauth/google';
  
 
 // COMPONENTS
@@ -39,7 +40,7 @@ export default function Home() {
       .catch(err => console.log("ERROR : ", err.request));
 
   return (
-    <>
+    <GoogleOAuthProvider clientId="106941893426-tltrlh5rr2ihbodkr4p319780rjc790n.apps.googleusercontent.com">
       <Head>
         <title>BITS & PSes</title>
         <link
@@ -68,6 +69,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </>
+    </GoogleOAuthProvider>
   );
 }

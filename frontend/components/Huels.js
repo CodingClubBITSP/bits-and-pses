@@ -4,6 +4,7 @@ import { Spin as Hamburger } from "hamburger-react";
 import Link from "next/link";
 
 export default function Huels({ setID }) {
+
   const [open, setOpen] = useState(false);
   const [search, setNewSearch] = useState(""),
     [data, setData] = useState({

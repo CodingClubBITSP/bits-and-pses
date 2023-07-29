@@ -7,14 +7,13 @@
     "pretty": "prettier --write ."
   },
   "dependencies": {
+    "@react-oauth/google": "^0.11.1",
     "axios": "^1.2.2",
     "hamburger-react": "^2.5.0",
     "next": "^13.4.12",
     "next-auth": "^4.22.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-firebase-hooks": "^5.1.1",
-    "react-google-signin": "^1.0.3",
     "react-icons": "^4.7.1"
   },
   "devDependencies": {
