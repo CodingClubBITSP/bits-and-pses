@@ -34,3 +34,6 @@ class Review(models.Model):
     liteness = models.DecimalField(max_digits=2, decimal_places=1)
     grade_sat = models.DecimalField(max_digits=2, decimal_places=1)
     tips=models.TextField(max_length=500)
+    
+    def __str__(self) -> str:
+        return f'{self.user.get_username()} {self.sem.course.CourseID}/Sem{self.sem.sem}-{self.sem.year}'
