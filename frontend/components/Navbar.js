@@ -1,12 +1,19 @@
 import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 
 export default function Navbar() {
 
   const login = useGoogleLogin({
-    onSuccess: codeResponse => console.log(codeResponse),
-    flow: 'auth-code',
+    onSuccess: async credentialResponse => {
+      console.log(credentialResponse);
+      const userInfo = await axios.get(`http://localhost:8000/dj-rest-auth/google/?access_token=${credentialResponse.access_token}`, {
+        headers: { Authorization: `Bearer ${credentialResponse.access_token}` },
+      })
+      .then(res => res.data);
+      console.log(userInfo);
+    }
   });
 
     return (
