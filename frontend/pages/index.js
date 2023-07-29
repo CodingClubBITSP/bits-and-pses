@@ -33,7 +33,7 @@ export default function Home() {
   const search = id =>
     axios({
       method: "POST",
-      url: "https://bits-and-pses.centralindia.cloudapp.azure.com/courseview/",
+      url: "http://localhost:8000/courseview/",
       data: { CourseID: id },
     })
       .then(response => setData(response.data[0]))

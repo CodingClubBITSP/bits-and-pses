@@ -10,6 +10,7 @@ from django.shortcuts import render
 from .models import *
 from rest_framework import status
 from rest_framework.views import APIView, Response
+from rest_framework.permissions import IsAuthenticated
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .serializers import ReviewSerializer
@@ -105,6 +106,7 @@ class CourseView(APIView):
 
 
 class ReviewView(APIView):
+    # permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
         course = request.data["course"]
         # sem= request.data['sem']
