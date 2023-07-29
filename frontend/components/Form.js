@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { InputWithText } from "../components/InputWithText";
 import StarRating from "../components/StarRating";
+import Cookies from "js-cookie";
 
 export default function FormValidation() {
+  const sessionID = Cookies.get('session_id')
   const [startValidation, setValidation] = useState(false),
     [student, setStudent] = useState({
       student: "",
@@ -29,7 +31,7 @@ export default function FormValidation() {
 
       axios({
         method: "POST",
-        url: "https://bits-and-pses.centralindia.cloudapp.azure.com/courseview/",
+        url: "http://localhost:8000/courseview/",
         data: {
           course: student.course,
           student: student.student,
@@ -40,6 +42,7 @@ export default function FormValidation() {
           grade_sat: student.grade_sat,
           tips: student.tips,
         },
+        headers: {Authorization: 'Token ' + sessionID}
       })
         .then(res => alert("Submitted Successfully"))
         .catch(err => console.log("ERROR : ", err.request));

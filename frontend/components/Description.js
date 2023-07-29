@@ -2,8 +2,14 @@ import { InputWithText } from "../components/InputWithText";
 import StarRating from "../components/StarRating";
 import { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+
+// const sessionId = document.cookie.split('; ')[1].split('=')[1]
 
 export default function Description({ data }) {
+  const sessionID = Cookies.get('session_id')
+  const headers = { Authorization: `Token ${sessionID}`}
+  console.log(sessionID)
   const [toggle, setToggle] = useState(false),
     [startValidation, setValidation] = useState(false),
     [student, setStudent] = useState({
@@ -30,20 +36,34 @@ export default function Description({ data }) {
     )
       // {return;}
 
-      axios({
-        method: "POST",
-        url: "https://bits-and-pses.centralindia.cloudapp.azure.com/courseview/",
-        data: {
-          course: student.course,
-          user: student.user,
-          sem: student.sem,
-          pr: student.pr,
-          overall_exp: student.overall_exp,
-          liteness: student.liteness,
-          grade_sat: student.grade_sat,
-          tips: student.tips,
-        },
-      })
+      // axios({
+      //   method: "POST",
+      //   url: "http://localhost:8000/courseview/",
+      //   data: {
+      //     course: student.course,
+      //     user: student.user,
+      //     sem: student.sem,
+      //     pr: student.pr,
+      //     overall_exp: student.overall_exp,
+      //     liteness: student.liteness,
+      //     grade_sat: student.grade_sat,
+      //     tips: student.tips,
+      //   },
+      //   headers: {'Authorization': 'Token ' + sessionID}
+      // })
+      //   .then(res => alert("Submitted Successfully"))
+      //   .catch(err => console.log("ERROR : ", err.request));
+
+      axios.post("http://localhost:8000/courseview/", {
+        course: student.course,
+        user: student.user,
+        sem: student.sem,
+        pr: student.pr,
+        overall_exp: student.overall_exp,
+        liteness: student.liteness,
+        grade_sat: student.grade_sat,
+        tips: student.tips,
+      }, { headers })
         .then(res => alert("Submitted Successfully"))
         .catch(err => console.log("ERROR : ", err.request));
   };

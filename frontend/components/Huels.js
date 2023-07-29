@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Spin as Hamburger } from "hamburger-react";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 export default function Huels({ setID }) {
-
+  const sessionID = Cookies.get('session_id')
   const [open, setOpen] = useState(false);
   const [search, setNewSearch] = useState(""),
     [data, setData] = useState({
@@ -20,7 +21,9 @@ export default function Huels({ setID }) {
 
   useEffect(() => {
     axios
-      .get("https://bits-and-pses.centralindia.cloudapp.azure.com/courselist/")
+      .get("http://localhost:8000/courselist/", {
+        headers: {Authorization: 'Token ' + sessionID}
+      })
       .then(response => setData(response.data));
   }, []);
 

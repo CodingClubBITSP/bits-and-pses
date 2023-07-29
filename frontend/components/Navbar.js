@@ -1,18 +1,19 @@
 import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import Cookies from 'js-cookie'
 
 
 export default function Navbar() {
+  // const [cookies, setCookie, removeCookie] = useCookies(['session_id'])
 
   const login = useGoogleLogin({
     onSuccess: async credentialResponse => {
       console.log(credentialResponse);
-      const userInfo = await axios.get(`http://localhost:8000/dj-rest-auth/google/?access_token=${credentialResponse.access_token}`, {
-        headers: { Authorization: `Bearer ${credentialResponse.access_token}` },
-      })
+      const userInfo = await axios.get(`http://localhost:8000/dj-rest-auth/google/?access_token=${credentialResponse.access_token}`)
       .then(res => res.data);
-      console.log(userInfo);
+      // setCookie('session_id', userInfo.session_id, {'path': '/', 'maxAge': 2 * 60 * 60})
+      Cookies.set('session_id', userInfo.session_id)
     }
   });
 

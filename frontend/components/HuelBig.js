@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export default function HuelBig({ setID }) {
+  const sessionID = Cookies.get('session_id')
   const [data, setData] = useState([]),
     [search, setNewSearch] = useState("");
 
   useEffect(() => {
     axios
-      .get("https://bits-and-pses.centralindia.cloudapp.azure.com/courselist/")
+      .get("http://localhost:8000/courselist/", {
+        headers: {Authorization: 'Token ' + sessionID}
+      })
       .then(response => {
         setData(response.data);
       });
