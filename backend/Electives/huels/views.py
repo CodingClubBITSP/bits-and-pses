@@ -38,6 +38,7 @@ class CourseList(APIView):
 
 
 class CourseView(APIView):
+    # permission_classes = [IsAuthenticated]
     def post(self, request):
         temp = request.data
         course_id = request.data["CourseID"]
@@ -106,7 +107,7 @@ class CourseView(APIView):
 
 
 class ReviewView(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
         course = request.data["course"]
         # sem= request.data['sem']

@@ -2,17 +2,12 @@ import { InputWithText } from "../components/InputWithText";
 import StarRating from "../components/StarRating";
 import { useState } from "react";
 import axios from "axios";
-import {Cookies,useCookies} from 'react-cookie';
+import {useCookies} from 'react-cookie';
 import React, {useEffect} from "react";
 
-
 export default function Description({ data }) {
-  const cookies = new Cookies();
-  const [lookies, setCookie, removeCookie] = useCookies(['session_id']);
-
-  const sessionID = cookies.get('session_id')
-  const headers = { Authorization: `Token ${sessionID}`}
-  console.log(sessionID)
+  const [cookies, setCookie, removeCookie] = useCookies(['session_id']);
+  axios.defaults.headers.common['Authorization'] = `Token ${cookies.session_id}`;
   const [toggle, setToggle] = useState(false),
     [startValidation, setValidation] = useState(false),
     [student, setStudent] = useState({
@@ -39,25 +34,10 @@ export default function Description({ data }) {
     )
       {return;}
 
-      axios({
-        method: "POST",
-        url: "http://localhost:8000/courseview/",
-        data: {
-          course: student.course,
-          user: student.user,
-          sem: student.sem,
-          pr: student.pr,
-          overall_exp: student.overall_exp,
-          liteness: student.liteness,
-          grade_sat: student.grade_sat,
-          tips: student.tips,
-        },
-        headers: {'Authorization': 'Token ' + sessionID}
-      })
-        .then(res => alert("Submitted Successfully"))
-        .catch(err => console.log("ERROR : ", err.request));
-
-      axios.post("http://localhost:8000/courseview/", {
+    axios({
+      method: "POST",
+      url: "http://localhost:8000/courseview/",
+      data: {
         course: student.course,
         user: student.user,
         sem: student.sem,
@@ -66,9 +46,10 @@ export default function Description({ data }) {
         liteness: student.liteness,
         grade_sat: student.grade_sat,
         tips: student.tips,
-      }, { headers })
-        .then(res => alert("Submitted Successfully"))
-        .catch(err => console.log("ERROR : ", err.request));
+      }
+    })
+      .then(res => alert("Submitted Successfully"))
+      .catch(err => console.log("ERROR : ", err.request));
   };
 
   return toggle ? (
