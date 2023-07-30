@@ -159,7 +159,7 @@ export default function Description({ data }) {
           className=" text-[#0353A4] w-auto p-1 m-2 mb-0 mr-4 font-bold  hover:text-teal-500"
           onClick={() => setToggle(true)}
         >
-          GIVE FEEDBACK
+          GIVE FEEDBACK krfnrifnonf
         </button>
       </div>
 
