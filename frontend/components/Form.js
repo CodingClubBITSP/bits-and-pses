@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { InputWithText } from "../components/InputWithText";
 import StarRating from "../components/StarRating";
-import { Cookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 
 export default function FormValidation() {
-  const sessionID = Cookies.get('session_id')
+  const [cookies, setCookie, removeCookie] = useCookies(['session_id']);
+  axios.defaults.headers.common['Authorization'] = `Token ${cookies.session_id}`;
   const [startValidation, setValidation] = useState(false),
     [student, setStudent] = useState({
       student: "",
@@ -42,7 +43,6 @@ export default function FormValidation() {
           grade_sat: student.grade_sat,
           tips: student.tips,
         },
-        headers: {Authorization: 'Token ' + sessionID}
       })
         .then(res => alert("Submitted Successfully"))
         .catch(err => console.log("ERROR : ", err.request));

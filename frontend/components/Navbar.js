@@ -10,11 +10,9 @@ export default function Navbar() {
 
   const login = useGoogleLogin({
     onSuccess: async credentialResponse => {
-      console.log(credentialResponse);
       const userInfo = await axios.get(`http://localhost:8000/dj-rest-auth/google/?access_token=${credentialResponse.access_token}`)
       .then(res => res.data);
       setCookie('session_id', userInfo.session_id, {'path': '/', 'maxAge': 2 * 60 * 60})
-      Cookies.set('session_id', userInfo.session_id)
     }
   });
 
