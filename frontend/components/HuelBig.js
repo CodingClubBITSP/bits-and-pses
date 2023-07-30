@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
+import { Cookies } from "react-cookie";
 
 export default function HuelBig({ setID }) {
-  const sessionID = Cookies.get('session_id')
+  const cookies = new Cookies();
+  const sessionID = cookies.get('session_id')
   const [data, setData] = useState([]),
     [search, setNewSearch] = useState("");
 

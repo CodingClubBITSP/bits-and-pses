@@ -1,9 +1,10 @@
+
 import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { GoogleOAuthProvider } from '@react-oauth/google';
- 
+import { CookiesProvider } from "react-cookie";
 
 // COMPONENTS
 import Huels from "../components/Huels";
@@ -41,6 +42,7 @@ export default function Home() {
 
   return (
     <GoogleOAuthProvider clientId="106941893426-tltrlh5rr2ihbodkr4p319780rjc790n.apps.googleusercontent.com">
+      <CookiesProvider>
       <Head>
         <title>BITS & PSes</title>
         <link
@@ -69,6 +71,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      </CookiesProvider>
     </GoogleOAuthProvider>
   );
 }

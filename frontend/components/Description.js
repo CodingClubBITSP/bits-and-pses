@@ -2,12 +2,15 @@ import { InputWithText } from "../components/InputWithText";
 import StarRating from "../components/StarRating";
 import { useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
+import {Cookies,useCookies} from 'react-cookie';
+import React, {useEffect} from "react";
 
-// const sessionId = document.cookie.split('; ')[1].split('=')[1]
 
 export default function Description({ data }) {
-  const sessionID = Cookies.get('session_id')
+  const cookies = new Cookies();
+  const [lookies, setCookie, removeCookie] = useCookies(['session_id']);
+
+  const sessionID = cookies.get('session_id')
   const headers = { Authorization: `Token ${sessionID}`}
   console.log(sessionID)
   const [toggle, setToggle] = useState(false),
@@ -34,25 +37,25 @@ export default function Description({ data }) {
       student.grade_sat === "" ||
       student.tips === ""
     )
-      // {return;}
+      {return;}
 
-      // axios({
-      //   method: "POST",
-      //   url: "http://localhost:8000/courseview/",
-      //   data: {
-      //     course: student.course,
-      //     user: student.user,
-      //     sem: student.sem,
-      //     pr: student.pr,
-      //     overall_exp: student.overall_exp,
-      //     liteness: student.liteness,
-      //     grade_sat: student.grade_sat,
-      //     tips: student.tips,
-      //   },
-      //   headers: {'Authorization': 'Token ' + sessionID}
-      // })
-      //   .then(res => alert("Submitted Successfully"))
-      //   .catch(err => console.log("ERROR : ", err.request));
+      axios({
+        method: "POST",
+        url: "http://localhost:8000/courseview/",
+        data: {
+          course: student.course,
+          user: student.user,
+          sem: student.sem,
+          pr: student.pr,
+          overall_exp: student.overall_exp,
+          liteness: student.liteness,
+          grade_sat: student.grade_sat,
+          tips: student.tips,
+        },
+        headers: {'Authorization': 'Token ' + sessionID}
+      })
+        .then(res => alert("Submitted Successfully"))
+        .catch(err => console.log("ERROR : ", err.request));
 
       axios.post("http://localhost:8000/courseview/", {
         course: student.course,
