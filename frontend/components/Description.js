@@ -78,6 +78,7 @@ export default function Description({ data }) {
                 ...student,
                 course: e.target.value,
               });
+                // e.target.value === 'someCourseName' ? setStudent({...student , code: 'correspondingCode'}) : setStudent({...student , code: ''})
             }}
             validate={startValidation ? student.course === "" : false}
           />
@@ -90,6 +91,7 @@ export default function Description({ data }) {
               ...student,
               code: e.target.value,
             });
+              // e.target.value === 'someCode' ? setStudent({...student , course: 'correspondingname'}) : setStudent({...student , course: ''})
           }}
           validate={startValidation ? student.code === "" : false}
         />
