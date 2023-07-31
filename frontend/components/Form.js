@@ -54,16 +54,7 @@ export default function FormValidation() {
         <div className="flex w-full p-3 mt-4 flex-col mb-4 md:w-3/4">
           <span className="font-bold text-2xl mb-4">Feedback form</span>
 
-          <InputWithText
-            title={"Name"}
-            onChange={e => {
-              setStudent({
-                ...student,
-                student: e.target.value,
-              });
-            }}
-            validate={startValidation ? student.name === "" : false}
-          />
+          
           <InputWithText
             title={"Course Name"}
             onChange={e => {
@@ -73,6 +64,16 @@ export default function FormValidation() {
               });
             }}
             validate={startValidation ? student.course === "" : false}
+          />
+          <InputWithText
+            title={"Pr No."}
+            onChange={e => {
+              setStudent({
+                ...student,
+                pr: e.target.value,
+              });
+            }}
+            validate={startValidation ? student.pr === "" : false}
           />
           <InputWithText
             title={"Course Number"}
