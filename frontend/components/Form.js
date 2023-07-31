@@ -32,7 +32,7 @@ export default function FormValidation() {
 
       axios({
         method: "POST",
-        url: "http://localhost:8000/courseview/",
+        url: "https://bits-and-pses.duckdns.org/courseview/",
         data: {
           course: student.course,
           student: student.student,

@@ -36,7 +36,7 @@ export default function Description({ data }) {
 
     axios({
       method: "POST",
-      url: "http://localhost:8000/courseview/",
+      url: "https://bits-and-pses.duckdns.org/courseview/",
       data: {
         course: student.course,
         user: student.user,
@@ -46,6 +46,9 @@ export default function Description({ data }) {
         liteness: student.liteness,
         grade_sat: student.grade_sat,
         tips: student.tips,
+      },
+      headers: {
+        Authorization: ''
       }
     })
       .then(res => alert("Submitted Successfully"))

@@ -23,8 +23,8 @@ export default function Huels({ setID }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/courselist/", {
-        headers: {Authorization: 'Token ' + sessionID}
+      .get("https://bits-and-pses.duckdns.org/courselist/", {
+        headers: {Authorization: ''}
       })
       .then(response => setData(response.data));
   }, []);
