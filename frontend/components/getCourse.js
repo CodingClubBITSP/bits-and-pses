@@ -25,7 +25,7 @@
 
     let reqIndex = -1;
     
-    CourseList.map( el => { el.CourseID === 'GS F241' ? reqIndex = CourseList.findIndex( el=> el.CourseID === 'GS F241') : null})
+    CourseList.map( el => { el.CourseID === code ? reqIndex = CourseList.findIndex( el=> el.CourseID === code) : null})
 
        console.log(reqIndex)
     
