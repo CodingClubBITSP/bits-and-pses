@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import {useCookies} from 'react-cookie';
 import React, {useEffect} from "react";
+import {getCourselist , getCodelist , courseArray} from './getCourse';
 
 export default function Description({ data }) {
 const fruits=["mango","apple","nana"];
@@ -77,13 +78,19 @@ function makeDropDownCourseNo(){
    });
 }
 function handleChange(e){
-  var name=e.target.name;
+  const rname = e.target.value;
     setStudent({
       ...student,
       name: e.target.value,
     });
-    console.log(student.name);
+
+    // checkingmatch...
+
+    getCourselist(rname).then(result => setStudent({...student, code: result} ) , console.log(student.code))
+   
+    getCodelist(rname).then(result => setStudent({...student, course: result} ) , console.log(student.course))
 };
+
   return toggle ? (
     <div className="bg-[#F9F9F9] fixed text-[#606060] w-screen h-max min-h-screen top-12 left-0 display-block flex flex-col justify-center items-center overflow-hidden">
       <div className="flex w-full p-3 mt-4 flex-col mb-4 md:w-3/4">
