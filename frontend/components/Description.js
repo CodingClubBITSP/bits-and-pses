@@ -6,6 +6,10 @@ import {useCookies} from 'react-cookie';
 import React, {useEffect} from "react";
 
 export default function Description({ data }) {
+const fruits=["mango","apple","nana"];
+  
+
+  const [list,setList]=useState([]);
   const [cookies, setCookie, removeCookie] = useCookies(['session_id']);
   axios.defaults.headers.common['Authorization'] = `Token ${cookies.session_id}`;
   const [toggle, setToggle] = useState(false),
@@ -21,7 +25,7 @@ export default function Description({ data }) {
       grade_sat: "",
       tips: "",
     });
-
+   
   const onClick = () => {
     setValidation(true);
 
@@ -55,23 +59,47 @@ export default function Description({ data }) {
       .catch(err => console.log("ERROR : ", err.request));
   };
 
+  // async function checkMatch () {
+  //   const response = await fetch("https://bits-and-pses.duckdns.org/courselist/");
+  //   const CourseList = await response.json();
+  //   return CourseList;
+  // }
+  // const courseList=checkMatch();
+  function makeDropDown(){
+    return fruits.map((item) =>{
+     return <option key={item}>{item}</option>
+    });
+  }
+
+function makeDropDownCourseNo(){
+  return fruits.map((item) =>{
+    return <option key={item} >{item}</option>
+   });
+}
+function handleChange(e){
+  var name=e.target.name;
+    setStudent({
+      ...student,
+      name: e.target.value,
+    });
+    console.log(student.name);
+};
   return toggle ? (
     <div className="bg-[#F9F9F9] fixed text-[#606060] w-screen h-max min-h-screen top-12 left-0 display-block flex flex-col justify-center items-center overflow-hidden">
       <div className="flex w-full p-3 mt-4 flex-col mb-4 md:w-3/4">
         <span className="font-bold text-2xl mb-4">Feedback Form</span>
 
-        <div className="flex gap-4 w-full">
-          <InputWithText
-            title={"Name"}
-            onChange={e => {
-              setStudent({
-                ...student,
-                user: e.target.value,
-              });
-            }}
-            validate={startValidation ? student.user === "" : false}
-          />
-          <InputWithText
+        <div className="flex gap-4 w-full">    
+        <label style={{"width":"100%"}} >
+            List of Courses
+            <br></br>
+         <select style={{"width":"500px","border":"2px solid black",'height':"30px"}} onChange={handleChange} name="courseName">
+         {makeDropDown()}
+         </select>
+
+          </label>
+                
+          {/* <InputWithText
             title={"Course Name"}
             onChange={e => {
               setStudent({
@@ -81,10 +109,22 @@ export default function Description({ data }) {
                 // e.target.value === 'someCourseName' ? setStudent({...student , code: 'correspondingCode'}) : setStudent({...student , code: ''})
             }}
             validate={startValidation ? student.course === "" : false}
+            
+          /> */}
+           <InputWithText
+            title={"Pr number"}
+            type={"number"}
+            onChange={e => {
+              setStudent({
+                ...student,
+                pr: e.target.value,
+              });
+            }}
+            validate={startValidation ? student.pr === "" : false}
           />
         </div>
 
-        <InputWithText
+        {/* <InputWithText
           title={"Course Number"}
           onChange={e => {
             setStudent({
@@ -94,7 +134,15 @@ export default function Description({ data }) {
               // e.target.value === 'someCode' ? setStudent({...student , course: 'correspondingname'}) : setStudent({...student , course: ''})
           }}
           validate={startValidation ? student.code === "" : false}
-        />
+        /> */}
+        <label style={{"width":"100%","marginBottom":"20px"}} >
+            Course No.
+            <br></br>
+         <select style={{"width":"500px","border":"2px solid black",'height':"30px"}} onChange={handleChange} name="courseNumber">
+         {makeDropDownCourseNo()}
+         </select>
+
+          </label>
 
         <div className="flex justify-around items-center">
           <StarRating
@@ -128,12 +176,13 @@ export default function Description({ data }) {
 
         <InputWithText
           title={"Feedback"}
+          type={"text"}
           onChange={e => {
             setStudent({
               ...student,
               tips: e.target.value,
             });
-            console.log(student);
+         
           }}
           validate={startValidation ? student.tips === "" : false}
         />

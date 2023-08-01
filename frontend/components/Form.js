@@ -65,6 +65,17 @@ export default function FormValidation() {
             }}
             validate={startValidation ? student.course === "" : false}
           />
+           <InputWithText
+            title={"Feedback"}
+            onChange={e => {
+              setStudent({
+                ...student,
+                tips: e.target.value,
+              });
+              console.log(student);
+            }}
+            validate={startValidation ? student.feedback === "" : false}
+          />
           <InputWithText
             title={"Pr No."}
             onChange={e => {

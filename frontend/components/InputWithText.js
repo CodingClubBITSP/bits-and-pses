@@ -3,6 +3,7 @@ export function InputWithText({
   description,
   defaultValue,
   onChange,
+  type,
   validate = false,
 }) {
   const className = validate
@@ -17,7 +18,7 @@ export function InputWithText({
         <input
           className={className}
           id="inline-full-name"
-          type="text"
+          type={type}
           defaultValue={defaultValue}
           onChange={onChange}
         />
