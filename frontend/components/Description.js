@@ -4,11 +4,11 @@ import { useState } from "react";
 import axios from "axios";
 import {useCookies} from 'react-cookie';
 import React, {useEffect} from "react";
-import {getCourselist , getCodelist , courseArray} from './getCourse';
+import {getCourselist , getCodelist , DropdownMenuC , DropdownMenuD} from './getCourse';
 
 export default function Description({ data }) {
 const fruits=["mango","apple","nana"];
-  
+
 
   const [list,setList]=useState([]);
   const [cookies, setCookie, removeCookie] = useCookies(['session_id']);
@@ -66,17 +66,17 @@ const fruits=["mango","apple","nana"];
   //   return CourseList;
   // }
   // const courseList=checkMatch();
-  function makeDropDown(){
-    return fruits.map((item) =>{
-     return <option key={item}>{item}</option>
-    });
-  }
+  // function makeDropDown(){
+  //   return fruits.map((item) =>{
+  //    return <option key={item}>{item}</option>
+  //   });
+  // }
 
-function makeDropDownCourseNo(){
-  return fruits.map((item) =>{
-    return <option key={item} >{item}</option>
-   });
-}
+// function makeDropDownCourseNo(){
+//   return fruits.map((item) =>{
+//     return <option key={item} >{item}</option>
+//    });
+// }
 function handleChange(e){
   const rname = e.target.value;
     setStudent({
@@ -100,9 +100,10 @@ function handleChange(e){
         <label style={{"width":"100%"}} >
             List of Courses
             <br></br>
-         <select style={{"width":"500px","border":"2px solid black",'height':"30px"}} onChange={handleChange} name="courseName">
-         {makeDropDown()}
-         </select>
+         {/* <select style={{"width":"500px","border":"2px solid black",'height':"30px"}} onChange={handleChange} name="courseName">
+         {}
+         </select> */}
+         <DropdownMenuC />
 
           </label>
                 
@@ -145,10 +146,10 @@ function handleChange(e){
         <label style={{"width":"100%","marginBottom":"20px"}} >
             Course No.
             <br></br>
-         <select style={{"width":"500px","border":"2px solid black",'height':"30px"}} onChange={handleChange} name="courseNumber">
+         {/* <select style={{"width":"500px","border":"2px solid black",'height':"30px"}} onChange={handleChange} name="courseNumber">
          {makeDropDownCourseNo()}
-         </select>
-
+         </select> */}
+         <DropdownMenuD />
           </label>
 
         <div className="flex justify-around items-center">
