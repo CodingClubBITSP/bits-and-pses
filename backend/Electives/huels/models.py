@@ -9,6 +9,7 @@ class Courses(models.Model):
     CourseID=models.CharField(max_length=100)
     CourseName=models.CharField(max_length=100)
     Units=models.SmallIntegerField()
+    about = models.TextField(default="No About for this HuEl")
     
     def __str__(self) -> str:
         return self.CourseName

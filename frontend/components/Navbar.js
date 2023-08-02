@@ -10,7 +10,7 @@ export default function Navbar() {
 
   const login = useGoogleLogin({
     onSuccess: async credentialResponse => {
-      const userInfo = await axios.get(`https://bits-and-pses.duckdns.org/dj-rest-auth/google/?access_token=${credentialResponse.access_token}`)
+      const userInfo = await axios.get(`https://bits-and-pses.duckdns.org/dj-rest-auth/google/?access_token=${credentialResponse.access_token}`, {headers: {Authorization: ''}})
       .then(res => res.data);
       setCookie('session_id', userInfo.session_id, {'path': '/', 'maxAge': 2 * 60 * 60})
     }
@@ -22,7 +22,7 @@ export default function Navbar() {
         Pick Your Course
       </div>
       <div className="loginButton">
-      <button onClick={() => login()}>
+      <button onClick={() => login()} className="text-xl font-semibold text-[#606060]">
         Sign in with Google
       </button>
       </div>

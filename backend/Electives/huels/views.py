@@ -69,6 +69,7 @@ class CourseView(APIView):
             res_dict["CourseID"] = course.CourseID
             res_dict["CourseName"] = course.CourseName
             res_dict["Units"] = course.Units
+            res_dict["about"] = course.about
         if(sem):
             res_dict["IC_Name"] = sem.IC_Name
         else:
