@@ -4,10 +4,10 @@ import { useState } from "react";
 import axios from "axios";
 import {useCookies} from 'react-cookie';
 import React, {useEffect} from "react";
-import {getCourselist , getCodelist , DropdownMenuC , DropdownMenuD} from './getCourse';
+import {getCourselist , getCodelist , DropdownMenu } from './getCourse';
 
 export default function Description({ data }) {
-const fruits=["mango","apple","nana"];
+
 
 
   const [list,setList]=useState([]);
@@ -97,61 +97,29 @@ function handleChange(e){
         <span className="font-bold text-2xl mb-4">Feedback Form</span>
 
         <div className="flex gap-4 w-full">    
-        <label style={{"width":"100%"}} >
-            List of Courses
-            <br></br>
-         {/* <select style={{"width":"500px","border":"2px solid black",'height':"30px"}} onChange={handleChange} name="courseName">
-         {}
-         </select> */}
-         <DropdownMenuC />
+         <DropdownMenu/>       
+        </div>
 
-          </label>
-                
-          {/* <InputWithText
-            title={"Course Name"}
-            onChange={e => {
-              setStudent({
-                ...student,
-                course: e.target.value,
-              });
-                // e.target.value === 'someCourseName' ? setStudent({...student , code: 'correspondingCode'}) : setStudent({...student , code: ''})
-            }}
-            validate={startValidation ? student.course === "" : false}
-            
-          /> */}
-           <InputWithText
+        
+       
+        <InputWithText style={{"width":"100%","marginBottom":"20px"}}
             title={"Pr number"}
             type={"number"}
             onChange={e => {
-              setStudent({
-                ...student,
-                pr: e.target.value,
-              });
+              var pr_no=e.target.value;
+              if(pr_no >0){
+                setStudent({
+                  ...student,
+                  pr: e.target.value,
+                });
+              }else{
+                alert("Please Enter Pr_no. greater than 0");
+              }
+              
             }}
             validate={startValidation ? student.pr === "" : false}
           />
-        </div>
-
-        {/* <InputWithText
-          title={"Course Number"}
-          onChange={e => {
-            setStudent({
-              ...student,
-              code: e.target.value,
-            });
-              // e.target.value === 'someCode' ? setStudent({...student , course: 'correspondingname'}) : setStudent({...student , course: ''})
-          }}
-          validate={startValidation ? student.code === "" : false}
-        /> */}
-        <label style={{"width":"100%","marginBottom":"20px"}} >
-            Course No.
-            <br></br>
-         {/* <select style={{"width":"500px","border":"2px solid black",'height':"30px"}} onChange={handleChange} name="courseNumber">
-         {makeDropDownCourseNo()}
-         </select> */}
-         <DropdownMenuD />
-          </label>
-
+         
         <div className="flex justify-around items-center">
           <StarRating
             title={"Personal experience with course"}
