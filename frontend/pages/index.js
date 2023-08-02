@@ -34,8 +34,9 @@ export default function Home() {
   const search = id =>
     axios({
       method: "POST",
-      url: "http://localhost:8000/courseview/",
+      url: "https://bits-and-pses.duckdns.org/courseview/",
       data: { CourseID: id },
+      headers: {Authorization: ''}
     })
       .then(response => setData(response.data[0]))
       .catch(err => console.log("ERROR : ", err.request));

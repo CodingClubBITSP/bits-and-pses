@@ -30,8 +30,9 @@ export default function Huel() {
   const search = id =>
     axios({
       method: "POST",
-      url: "https://bits-and-pses.centralindia.cloudapp.azure.com/courseview/",
+      url: "https://bits-and-pses.duckdns.org/courseview/",
       data: { CourseID: id },
+      headers: {Authorization: ''}
     })
       .then(response => setData(response.data[0]))
       .catch(err => console.log("ERROR : ", err.request));

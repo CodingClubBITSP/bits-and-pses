@@ -207,10 +207,7 @@ function handleChange(e){
           What is it about ?
         </div>
         <div className="text-[14px] text-[#8A8A8A] lg:px-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-          dolore ex suscipit ipsa consectetur laudantium delectus, repudiandae
-          numquam tenetur dignissimos, doloremque sit ducimus, officiis aperiam
-          doloribus explicabo dolorum natus quam?
+          {data.about}
         </div>
       </div>
 
