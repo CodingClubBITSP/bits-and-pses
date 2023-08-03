@@ -60,23 +60,7 @@ export default function Description({ data }) {
       .catch(err => console.log("ERROR : ", err.request));
   };
 
-  // async function checkMatch () {
-  //   const response = await fetch("https://bits-and-pses.duckdns.org/courselist/");
-  //   const CourseList = await response.json();
-  //   return CourseList;
-  // }
-  // const courseList=checkMatch();
-  // function makeDropDown(){
-  //   return fruits.map((item) =>{
-  //    return <option key={item}>{item}</option>
-  //   });
-  // }
-
-// function makeDropDownCourseNo(){
-//   return fruits.map((item) =>{
-//     return <option key={item} >{item}</option>
-//    });
-// }
+ 
 function handleChange(e){
   const rname = e.target.value;
     setStudent({
@@ -96,6 +80,19 @@ function handleChange(e){
       <div className="flex w-full p-3 mt-4 flex-col mb-4 md:w-3/4">
         <span className="font-bold text-2xl mb-4">Feedback Form</span>
 
+        <InputWithText style={{"width":"50%","marginBottom":"20px"}}
+            title={"Student Name"}
+            type={"text"}
+            onChange={e => {
+                setStudent({
+                  ...student,
+                  user: e.target.value,
+                });
+             
+              
+            }}
+            validate={startValidation ? student.user=== "" : false}
+          />
         <div className="flex gap-4 w-full">    
          <DropdownMenu/>       
         </div>
