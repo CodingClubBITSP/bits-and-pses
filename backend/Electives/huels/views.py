@@ -95,7 +95,7 @@ class CourseView(APIView):
         else:
             res_dict["grade_sat"] = 0
         if(reviews):
-            res_dict["Reviews"] = reviews
+            res_dict["Reviews"] = json.dumps(reviews)
 
         if(res_dict=={}):
             return Response(status=status.HTTP_404_NOT_FOUND)
