@@ -67,7 +67,6 @@
         }
         
         const data = await response.json();
-        console.log(data)
         setMenuItemsCourse(data); // Update the menuItems state with the fetched data
       } catch (error) {
         console.error(error);
@@ -99,9 +98,9 @@
   
     return (
       <div style={{"display":"flex","flexDirection":"row","width":"100%"}}>
-      <div>
+      <div className='mr-8'>
         <label>Select a Course :</label>
-        <select style={{"width":"500px","border":"2px solid black",'height':"30px"}} value={selectedItemCourseName} onChange={handleSelect}>
+        <select className='border-2 border-gray-200 rounded w-full py-1 px-2 text-black leading-tight focus:outline-double focus:border-gray-200' value={selectedItemCourseName} onChange={handleSelect}>
           <option value="">Select an option</option>
           {menuItemsCourse.map((item) => (
             <option  key={item.id} value={item.course_name}>
@@ -113,7 +112,7 @@
       </div>
       <div>
       <label>Select Course  No. :</label>
-      <select style={{"width":"500px","border":"2px solid black",'height':"30px"}} value={selectedItemCourseId} onChange={e => handleSelectIdCourse(e)}>
+      <select className='border-2 border-gray-200 rounded w-full py-1 px-2 text-black leading-tight focus:outline-double focus:border-gray-200' value={selectedItemCourseId} onChange={e => handleSelectIdCourse(e)}>
         <option value="">Select an option</option>
         {menuItemsCourse.map((item) => (
           <option  key={item.id} value={item.CourseID}>

@@ -5,6 +5,7 @@ export function InputWithText({
   onChange,
   type,
   validate = false,
+  min
 }) {
   const className = validate
     ? "border-2 border-red-200 rounded w-full py-1 px-2 text-black leading-tight focus:outline-double focus:border-gray-200"
@@ -21,6 +22,7 @@ export function InputWithText({
           type={type}
           defaultValue={defaultValue}
           onChange={onChange}
+          min={min}
         />
         {validate ? (
           <span className="text-red-500">This field is mandatory</span>
