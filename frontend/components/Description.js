@@ -7,9 +7,6 @@ import React, {useEffect} from "react";
 import {getCourselist , getCodelist , DropdownMenu } from './getCourse';
 
 export default function Description({ data }) {
-
-
-
   const [list,setList]=useState([]);
   const [cookies, setCookie, removeCookie] = useCookies(['session_id']);
   axios.defaults.headers.common['Authorization'] = `Token ${cookies.session_id}`;
@@ -39,22 +36,26 @@ export default function Description({ data }) {
     )
       {return;}
 
+    data = {
+      course: student.course,
+      pr: student.pr,
+      overall_exp: student.overall_exp,
+      liteness: student.liteness,
+      grade_sat: student.grade_sat,
+      tips: student.tips,
+    }
+    console.log(data)
     axios({
       method: "POST",
-      url: "https://bits-and-pses.duckdns.org/courseview/",
+      url: "https://bits-and-pses.duckdns.org/postreview/",
       data: {
         course: student.course,
-        user: student.user,
-        sem: student.sem,
         pr: student.pr,
         overall_exp: student.overall_exp,
         liteness: student.liteness,
         grade_sat: student.grade_sat,
         tips: student.tips,
       },
-      headers: {
-        Authorization: ''
-      }
     })
       .then(res => alert("Submitted Successfully"))
       .catch(err => console.log("ERROR : ", err.request));
@@ -76,6 +77,7 @@ function handleChange(e){
 };
 
   return toggle ? (
+    cookies.session_id ? ( 
     <div className="bg-[#F9F9F9] fixed text-[#606060] w-screen h-max min-h-screen top-12 left-0 display-block flex flex-col justify-center items-center overflow-hidden">
       <div className="flex w-full p-3 mt-4 flex-col mb-4 md:w-3/4">
         <span className="font-bold text-2xl mb-4">Feedback Form</span>
@@ -88,8 +90,6 @@ function handleChange(e){
                   ...student,
                   user: e.target.value,
                 });
-             
-              
             }}
             validate={startValidation ? student.user=== "" : false}
           />
@@ -102,6 +102,7 @@ function handleChange(e){
         <InputWithText style={{"width":"100%","marginBottom":"20px"}}
             title={"Pr number"}
             type={"number"}
+            min={1}
             onChange={e => {
               var pr_no=e.target.value;
               if(pr_no >0){
@@ -109,10 +110,7 @@ function handleChange(e){
                   ...student,
                   pr: e.target.value,
                 });
-              }else{
-                alert("Please Enter Pr_no. greater than 0");
               }
-              
             }}
             validate={startValidation ? student.pr === "" : false}
           />
@@ -180,6 +178,16 @@ function handleChange(e){
       </div>
     </div>
   ) : (
+    <div className="bg-[#F9F9F9] fixed text-[#606060] w-screen h-max min-h-screen top-12 left-0 display-block flex flex-col justify-center items-center overflow-hidden text-5xl">
+      <p className="mb-10">You need to login first</p>
+      <button
+        className="bg-white border-black hover:bg-[#2A9134] hover:text-white border text-sm font-medium p-2 rounded px-4 "
+        type="button"
+        onClick={() => setToggle(false)}
+      >
+        Return Back
+      </button>
+    </div>)) : (
     <div className="bg-[#F9F9F9] w-[100%] ">
       <div className="flex justify-end">
         <button

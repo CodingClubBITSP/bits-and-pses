@@ -2,6 +2,7 @@ import { useState } from "react";
 import { InputWithText } from "../components/InputWithText";
 import StarRating from "../components/StarRating";
 import { useCookies } from "react-cookie";
+import axios from 'axios'
 
 export default function FormValidation() {
   const [cookies, setCookie, removeCookie] = useCookies(['session_id']);
