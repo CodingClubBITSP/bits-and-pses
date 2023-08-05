@@ -6,8 +6,8 @@ import { Cookies, useCookies } from "react-cookie";
 
 export default function Huels({ setID }) {
   const cookies = new Cookies();
-  const [lookies, setCookie, removeCookie] = useCookies(['session_id']);
-  const sessionID = cookies.get('session_id');
+  const [lookies, setCookie, removeCookie] = useCookies(["session_id"]);
+  const sessionID = cookies.get("session_id");
   const [open, setOpen] = useState(false);
   const [search, setNewSearch] = useState(""),
     [data, setData] = useState({
@@ -24,7 +24,7 @@ export default function Huels({ setID }) {
   useEffect(() => {
     axios
       .get("https://bits-and-pses.duckdns.org/courselist/", {
-        headers: {Authorization: ''}
+        headers: { Authorization: "" },
       })
       .then(response => setData(response.data));
   }, []);

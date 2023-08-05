@@ -2,11 +2,13 @@ import { useState } from "react";
 import { InputWithText } from "../components/InputWithText";
 import StarRating from "../components/StarRating";
 import { useCookies } from "react-cookie";
-import axios from 'axios'
+import axios from "axios";
 
 export default function FormValidation() {
-  const [cookies, setCookie, removeCookie] = useCookies(['session_id']);
-  axios.defaults.headers.common['Authorization'] = `Token ${cookies.session_id}`;
+  const [cookies, setCookie, removeCookie] = useCookies(["session_id"]);
+  axios.defaults.headers.common[
+    "Authorization"
+  ] = `Token ${cookies.session_id}`;
   const [startValidation, setValidation] = useState(false),
     [student, setStudent] = useState({
       student: "",
@@ -55,7 +57,6 @@ export default function FormValidation() {
         <div className="flex w-full p-3 mt-4 flex-col mb-4 md:w-3/4">
           <span className="font-bold text-2xl mb-4">Feedback form</span>
 
-          
           <InputWithText
             title={"Course Name"}
             onChange={e => {
@@ -66,7 +67,7 @@ export default function FormValidation() {
             }}
             validate={startValidation ? student.course === "" : false}
           />
-           <InputWithText
+          <InputWithText
             title={"Feedback"}
             onChange={e => {
               setStudent({

@@ -1,16 +1,15 @@
 import { useState } from "react";
 
-function makendisplay (s) {
-
-  let nameArr = Object.keys(JSON.parse(s.Reviews))
-  let tipsArr = Object.values(JSON.parse(s.Reviews))
+function makendisplay(s) {
+  let nameArr = Object.keys(JSON.parse(s.Reviews));
+  let tipsArr = Object.values(JSON.parse(s.Reviews));
 
   const obj = nameArr.map((name, index) => {
-    return {key : [index] , Name: name, Tip: tipsArr[index] };
+    return { key: [index], Name: name, Tip: tipsArr[index] };
   });
 
-  const elem = obj.map( (el) => {
-    return(
+  const elem = obj.map(el => {
+    return (
       <div>
         <div className="text-[#2A9134] text-[20px] mx-10 my-2 font-semibold">
           {el.Name}
@@ -19,12 +18,10 @@ function makendisplay (s) {
           {el.Tip}
         </div>
       </div>
-    )
-  }
-)
-return(elem)
+    );
+  });
+  return elem;
 }
-
 
 export default function Review({ data }) {
   const [selected, setSelected] = useState(4);
@@ -50,9 +47,13 @@ export default function Review({ data }) {
 
       <div className="lg:flex lg:flex-wrap py-4 h-32">
         <div className=" lg:flex lg:flex-col lg:flex-1">
-
-        {data.Reviews ? makendisplay(data) : <div className="text-center text-[#8A8A8A] text-xl">No Reviews for this Course</div>}
-
+          {data.Reviews ? (
+            makendisplay(data)
+          ) : (
+            <div className="text-center text-[#8A8A8A] text-xl">
+              No Reviews for this Course
+            </div>
+          )}
         </div>
       </div>
     </>
