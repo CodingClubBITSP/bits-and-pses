@@ -5,7 +5,7 @@ export function InputWithText({
   onChange,
   type,
   validate = false,
-  min
+  min,
 }) {
   const className = validate
     ? "border-2 border-red-200 rounded w-full py-1 px-2 text-black leading-tight focus:outline-double focus:border-gray-200"

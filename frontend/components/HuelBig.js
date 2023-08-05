@@ -4,14 +4,14 @@ import { Cookies } from "react-cookie";
 
 export default function HuelBig({ setID }) {
   const cookies = new Cookies();
-  const sessionID = cookies.get('session_id')
+  const sessionID = cookies.get("session_id");
   const [data, setData] = useState([]),
     [search, setNewSearch] = useState("");
 
   useEffect(() => {
     axios
       .get("https://bits-and-pses.duckdns.org/courselist/", {
-        headers: {Authorization: ''}
+        headers: { Authorization: "" },
       })
       .then(response => {
         setData(response.data);
