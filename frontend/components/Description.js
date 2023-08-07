@@ -1,12 +1,11 @@
-import { InputWithText } from "../components/InputWithText";
+import { InputWithText , Dropdown} from "../components/InputWithText";
 import StarRating from "../components/StarRating";
-import { useState } from "react";
+import { useState ,  useEffect} from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import React, { useEffect } from "react";
-import { getCourselist, getCodelist, DropdownMenu } from "./getCourse";
 
 export default function Description({ data }) {
+  let [element , COURSENAME , COURSECODE] = Dropdown();
   const [list, setList] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies(["session_id"]);
   axios.defaults.headers.common[
@@ -64,29 +63,15 @@ export default function Description({ data }) {
       .catch(err => console.log("ERROR : ", err.request));
   };
 
-  /**
-   * This function not getting called anywhere
-   */
-
-  function handleChange(e) {
-    const rname = e.target.value;
-    setStudent({
-      ...student,
-      name: e.target.value,
-    });
-
-    // checkingmatch...
-
-    getCourselist(rname).then(
-      result => setStudent({ ...student, code: result }),
-      console.log(student.code)
-    );
-
-    getCodelist(rname).then(
-      result => setStudent({ ...student, course: result }),
-      console.log(student.course)
-    );
+  function pass () {
+    setInterval(() => {
+      setStudent({
+        ...student , code:COURSECODE , course:COURSENAME
+      })
+      
+    }, 100);
   }
+
 
   return toggle ? (
     cookies.session_id ? (
@@ -106,8 +91,11 @@ export default function Description({ data }) {
             }}
             validate={startValidation ? student.user === "" : false}
           />
+
           <div className="flex gap-4 w-full">
-            <DropdownMenu />
+            {element}
+            {pass()}
+            {/* {console.log(student.code , student.course)} */}
           </div>
 
           <InputWithText
