@@ -179,7 +179,7 @@ export default function Description({ data }) {
             </button>
 
             <button
-              className="bg-white border-black hover:bg-[#2A9134] hover:text-white border text-sm font-medium p-2 rounded px-4"
+              className="bg-white border-black transition-all duration-500 hover:bg-[#2A9134] hover:text-white border text-sm font-medium p-2 rounded px-4"
               type="button"
               onClick={() => setToggle(false)}
             >
