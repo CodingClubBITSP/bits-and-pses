@@ -12,20 +12,32 @@ export default function Description({ data }) {
     "Authorization"
   ] = `Token ${cookies.session_id}`;
   const [toggle, setToggle] = useState(false),
-    [startValidation, setValidation] = useState(false),
-    [student, setStudent] = useState({
-      user: "",
-      course: "",
-      sem: 2,
-      pr: 100,
-      code: "",
-      overall_exp: "",
-      liteness: "",
-      grade_sat: "",
-      tips: "",
-    });
+  [startValidation, setValidation] = useState(false),
+  [student, setStudent] = useState({
+    user: "",
+    course: "",
+    sem: 2,
+    pr: 100,
+    code: "",
+    overall_exp: "",
+    liteness: "",
+    grade_sat: "",
+    tips: "",
+  });
+  
+  function pass () {
+    setTimeout(() => {
+      setStudent({
+        ...student , code:COURSECODE , course:COURSENAME
+      })
+    }, 100);
+  }
 
   const onClick = () => {
+    alert('click on Submit AGAIN to Confirm!!!')
+
+    pass();
+
     setValidation(true);
 
     if (
@@ -59,18 +71,9 @@ export default function Description({ data }) {
         tips: student.tips,
       },
     })
-      .then((res) => alert("Submitted Successfully"))
+      .then((res) => alert("Submitted Successfully ✅"))
       .catch(err => console.log("ERROR : ", err.request));
   };
-
-  function pass () {
-    setInterval(() => {
-      setStudent({
-        ...student , code:COURSECODE , course:COURSENAME
-      })
-      
-    }, 100);
-  }
 
 
   return toggle ? (
@@ -94,7 +97,6 @@ export default function Description({ data }) {
 
           <div className="flex gap-4 w-full">
             {element}
-            {pass()}
             {/* {console.log(student.code , student.course)} */}
           </div>
 
@@ -158,7 +160,7 @@ export default function Description({ data }) {
           />
 
           <div className="m-2 flex justify-start gap-12">
-            <button
+            <button 
               className="bg-[#0353A4] border-black hover:bg-[#2A9134] border text-white text-sm font-medium p-2 rounded px-4 transition-all duration-500"
               type="button"
               onClick={onClick}
