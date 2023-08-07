@@ -43,13 +43,6 @@ export default function Huels({ setID }) {
         <div className="text-3xl font-semibold text-[#606060]">Courses</div>
         <div className="flex items-stretch gap-4 justify-between pr-6 pl-3">
           <div className="bg-white rounded-md">
-            <Hamburger
-              rounded
-              color="#4b5563"
-              size={32}
-              distance="sm"
-              onToggle={toggled => setOpen(toggled ? true : false)}
-            />
           </div>
           <input
             type="text"

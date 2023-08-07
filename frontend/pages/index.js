@@ -1,10 +1,10 @@
-
 import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { CookiesProvider } from "react-cookie";
+import ReactLoading from "react-loading";
 
 // COMPONENTS
 import Huels from "../components/Huels";
@@ -41,6 +41,13 @@ export default function Home() {
       .then(response => setData(response.data[0]))
       .catch(err => console.log("ERROR : ", err.request));
 
+      const [isLoading,setIsLoading] = useState(true);
+      useEffect(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1250);
+      });
+
   return (
     <GoogleOAuthProvider clientId="106941893426-tltrlh5rr2ihbodkr4p319780rjc790n.apps.googleusercontent.com">
       <CookiesProvider>
@@ -52,7 +59,17 @@ export default function Home() {
           type="image/x-icon"
         />
       </Head>
-
+      {isLoading == true ?
+      <div className="loadingScreen" style={{
+        height : 660,
+        display : "flex",
+        alignItems : "center",
+        justifyContent : "center"
+      }}>
+          <ReactLoading type="spin" color="grey"height={200} width={200}/> </div>: (<div>
+            <div className="md:hidden font-poppins flex flex-col justify-start w-full min-h-screen md:w-2/6 ">
+        <Huels setID={setID} />
+      </div>
       <div className="md:hidden font-poppins flex flex-col justify-start w-full min-h-screen md:w-2/6 ">
         <Huels setID={setID} />
       </div>
@@ -72,6 +89,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+          </div>)}
       </CookiesProvider>
     </GoogleOAuthProvider>
   );
