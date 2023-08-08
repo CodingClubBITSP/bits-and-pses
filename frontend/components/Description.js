@@ -1,42 +1,58 @@
-import { InputWithText } from "../components/InputWithText";
+import { InputWithText , Dropdown} from "../components/InputWithText";
 import StarRating from "../components/StarRating";
-import { useState } from "react";
+import { useState ,  useEffect} from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { getCourselist, getCodelist, DropdownMenu } from "./getCourse";
 import Link from "next/link";
+=======
+>>>>>>> a9716f7d7080fab4cebb9f6e6fc170c8e327e0a7
 
 export default function Description({ data }) {
+  let [element , COURSENAME , COURSECODE] = Dropdown();
   const [list, setList] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies(["session_id"]);
   axios.defaults.headers.common[
     "Authorization"
   ] = `Token ${cookies.session_id}`;
   const [toggle, setToggle] = useState(false),
-    [startValidation, setValidation] = useState(false),
-    [student, setStudent] = useState({
-      user: "",
-      course: "",
-      sem: 2,
-      pr: 100,
-      code: "",
-      overall_exp: "",
-      liteness: "",
-      grade_sat: "",
-      tips: "",
-    });
+  [startValidation, setValidation] = useState(false),
+  [student, setStudent] = useState({
+    user: "",
+    course: "",
+    sem: 2,
+    pr: 100,
+    code: "",
+    overall_exp: 0,
+    liteness: 0,
+    grade_sat: 0,
+    tips: "",
+  });
+  
+  function pass () {
+    setTimeout(() => {
+      setStudent({
+        ...student , code:COURSECODE , course:COURSENAME
+      })
+    }, 100);
+  }
 
   const onClick = () => {
+    setStudent({
+      ...student , code:COURSECODE , course:COURSENAME
+    })
     setValidation(true);
 
     if (
-      student.user === "" ||
+      student.course === "" ||
       student.overall_exp === "" ||
       student.liteness === "" ||
       student.grade_sat === "" ||
       student.tips === ""
     ) {
+      alert('Please fill in all the fields!')
       return;
     }
 
@@ -61,59 +77,24 @@ export default function Description({ data }) {
         tips: student.tips,
       },
     })
-      .then((res) => alert("Submitted Successfully"))
-      .catch(err => console.log("ERROR : ", err.request));
+      .then((res) => alert("Submitted Successfully ✅"))
+      .catch(err => console.log("ERROR : ", err.request))
   };
 
-  /**
-   * This function not getting called anywhere
-   */
-
-  function handleChange(e) {
-    const rname = e.target.value;
-    setStudent({
-      ...student,
-      name: e.target.value,
-    });
-
-    // checkingmatch...
-
-    getCourselist(rname).then(
-      result => setStudent({ ...student, code: result }),
-      console.log(student.code)
-    );
-
-    getCodelist(rname).then(
-      result => setStudent({ ...student, course: result }),
-      console.log(student.course)
-    );
-  }
 
   return toggle ? (
     cookies.session_id ? (
       <div className="bg-[#F9F9F9] fixed text-[#606060] w-screen h-max min-h-screen top-12 left-0 display-block flex flex-col justify-center items-center overflow-hidden">
         <div className="flex w-full p-3 mt-4 flex-col mb-4 md:w-3/4">
           <span className="font-bold text-2xl mb-4">Feedback Form</span>
-
-          <InputWithText
-            style={{ width: "50%", marginBottom: "20px" }}
-            title={"Student Name"}
-            type={"text"}
-            onChange={e => {
-              setStudent({
-                ...student,
-                user: e.target.value,
-              });
-            }}
-            validate={startValidation ? student.user === "" : false}
-          />
           <div className="flex gap-4 w-full">
-            <DropdownMenu />
+            {element}
+            {/* {console.log(student.code , student.course)} */}
           </div>
 
           <InputWithText
             style={{ width: "100%", marginBottom: "20px" }}
-            title={"Pr number"}
+            title={"Preference Number for this Course"}
             type={"number"}
             min={1}
             onChange={e => {
@@ -171,7 +152,7 @@ export default function Description({ data }) {
           />
 
           <div className="m-2 flex justify-start gap-12">
-            <button
+            <button 
               className="bg-[#0353A4] border-black hover:bg-[#2A9134] border text-white text-sm font-medium p-2 rounded px-4 transition-all duration-500"
               type="button"
               onClick={onClick}
@@ -217,7 +198,7 @@ export default function Description({ data }) {
 
       <div className=" bg-white shadow-sm flex m-4 rounded-xl lg:px-10">
         <span className="flex justify-center items-center p-4 pr-0 text-[#2A9134] text-4xl">
-          {data.pr} <span className="text-base pl-0 m-0">th</span>
+          {data.pr.toFixed(0)} <span className="text-base pl-0 m-0">th</span>
         </span>
         <span className="flex items-center justify-center text-[#8A8A8A] p-4 text-[14px]">
           most popular HuEl by PR number median
