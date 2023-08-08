@@ -3,12 +3,11 @@ import StarRating from "../components/StarRating";
 import { useState ,  useEffect} from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-<<<<<<< HEAD
+
 import React, { useEffect } from "react";
 import { getCourselist, getCodelist, DropdownMenu } from "./getCourse";
 import Link from "next/link";
-=======
->>>>>>> a9716f7d7080fab4cebb9f6e6fc170c8e327e0a7
+
 
 export default function Description({ data }) {
   let [element , COURSENAME , COURSECODE] = Dropdown();
