@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGoogleLogin , googleLogout } from "@react-oauth/google";
 import axios from "axios";
 import { useCookies } from "react-cookie";
@@ -28,8 +28,15 @@ export default function Navbar() {
 
   const logOut = () => {
     googleLogout();
+    removeCookie(['session_id'])
     setUser("1");
 };
+
+  useEffect(() => {
+    if(cookies.session_id){
+      setUser(null)
+    }
+  })
 
   return (
     <div>

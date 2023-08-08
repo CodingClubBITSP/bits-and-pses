@@ -37,7 +37,7 @@ function InputWithText({
   );
 }
 
-function Dropdown () {
+function Dropdown (flex_dir = "row") {
   const [list , setlist] = useState([]);
   const [SelectedCourse , setSelectedCourse] = useState({ NAME: '' , CODE : '' });
 
@@ -46,6 +46,7 @@ function Dropdown () {
     axios({
       method: "GET",
       url: "https://bits-and-pses.duckdns.org/courselist",
+      headers: {Authorization: ''}
     })
     .then(res => {
       const data = res.data;
@@ -66,7 +67,7 @@ function Dropdown () {
   }
   
   return [(
-    <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+    <div style={{ display: "flex", flexDirection: flex_dir, width: "100%" }}>
       <div className="mr-8">
 
         <label>Select a Course :</label>
