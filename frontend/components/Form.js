@@ -46,6 +46,7 @@ export default function FormValidation() {
           grade_sat: student.grade_sat,
           tips: student.tips,
         },
+        headers: {Authorization:  ''}
       })
         .then(res => alert("Submitted Successfully"))
         .catch(err => console.log("ERROR : ", err.request));

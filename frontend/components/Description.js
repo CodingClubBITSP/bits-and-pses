@@ -19,9 +19,9 @@ export default function Description({ data }) {
     sem: 2,
     pr: 100,
     code: "",
-    overall_exp: "",
-    liteness: "",
-    grade_sat: "",
+    overall_exp: 0,
+    liteness: 0,
+    grade_sat: 0,
     tips: "",
   });
   
@@ -34,19 +34,19 @@ export default function Description({ data }) {
   }
 
   const onClick = () => {
-    alert('click on Submit AGAIN to Confirm!!!')
-
-    pass();
-
+    setStudent({
+      ...student , code:COURSECODE , course:COURSENAME
+    })
     setValidation(true);
 
     if (
-      student.user === "" ||
+      student.course === "" ||
       student.overall_exp === "" ||
       student.liteness === "" ||
       student.grade_sat === "" ||
       student.tips === ""
     ) {
+      alert('Please fill in all the fields!')
       return;
     }
 
@@ -72,7 +72,7 @@ export default function Description({ data }) {
       },
     })
       .then((res) => alert("Submitted Successfully ✅"))
-      .catch(err => console.log("ERROR : ", err.request));
+      .catch(err => console.log("ERROR : ", err.request))
   };
 
 
@@ -81,20 +81,6 @@ export default function Description({ data }) {
       <div className="bg-[#F9F9F9] fixed text-[#606060] w-screen h-max min-h-screen top-12 left-0 display-block flex flex-col justify-center items-center overflow-hidden">
         <div className="flex w-full p-3 mt-4 flex-col mb-4 md:w-3/4">
           <span className="font-bold text-2xl mb-4">Feedback Form</span>
-
-          <InputWithText
-            style={{ width: "50%", marginBottom: "20px" }}
-            title={"Student Name"}
-            type={"text"}
-            onChange={e => {
-              setStudent({
-                ...student,
-                user: e.target.value,
-              });
-            }}
-            validate={startValidation ? student.user === "" : false}
-          />
-
           <div className="flex gap-4 w-full">
             {element}
             {/* {console.log(student.code , student.course)} */}
@@ -102,7 +88,7 @@ export default function Description({ data }) {
 
           <InputWithText
             style={{ width: "100%", marginBottom: "20px" }}
-            title={"Pr number"}
+            title={"Preference Number for this Course"}
             type={"number"}
             min={1}
             onChange={e => {
@@ -203,7 +189,7 @@ export default function Description({ data }) {
 
       <div className=" bg-white shadow-sm flex m-4 rounded-xl lg:px-10">
         <span className="flex justify-center items-center p-4 pr-0 text-[#2A9134] text-4xl">
-          {data.pr} <span className="text-base pl-0 m-0">th</span>
+          {data.pr.toFixed(0)} <span className="text-base pl-0 m-0">th</span>
         </span>
         <span className="flex items-center justify-center text-[#8A8A8A] p-4 text-[14px]">
           most popular HuEl by PR number median
