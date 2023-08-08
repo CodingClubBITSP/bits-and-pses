@@ -5,6 +5,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import React, { useEffect } from "react";
 import { getCourselist, getCodelist, DropdownMenu } from "./getCourse";
+import Link from "next/link";
 
 export default function Description({ data }) {
   const [list, setList] = useState([]);
@@ -209,6 +210,9 @@ export default function Description({ data }) {
         >
           GIVE FEEDBACK
         </button>
+        <Link href={`/`}>
+        <div  className=" text-[#0353A4] w-auto p-1 m-2 mb-0 mr-4 font-bold transition-all duration-500 hover:text-teal-500">RETURN</div>
+      </Link>
       </div>
 
       <div className=" bg-white shadow-sm flex m-4 rounded-xl lg:px-10">
@@ -242,7 +246,7 @@ export default function Description({ data }) {
           <span className="flex items-center justify-end text-[#8A8A8A] p-4 text-[14px] w-3/4">
             Liteness of the course
           </span>
-          <span className="flex rounded-full border-4 border-[#9B9B9B] h-[58px] w-[60px] m-3 text-2xl items-center justify-center text-[#2A9134] ">
+          <span className="flex rounded-full border-4 border-[#9B9B9B] h-[58px] w-[60px] m-3 text-2xl items-center justify-center text-[#2A9134]">
             {data.liteness.toFixed(1)}
           </span>
         </div>
